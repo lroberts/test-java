@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# for centos 5
+function _install_emacs_23(){
+
+wget http://ftp.gnu.org/pub/gnu/emacs/emacs-23.3.tar.gz
+
+tar xvf emacs-23.3.tar.gz
+
+# change directory to the new emacs-23.3 directory that was created by the untar 
+cd emacs-23.3
+
+#2. Update packages on RHEL or CentOS Linux
+yum -y groupinstall "Development Tools"
+yum -y install gtk+-devel gtk2-devel
+yum -y install libXpm-devel
+yum -y install libpng-devel
+yum -y install giflib-devel
+yum -y install libtiff-devel libjpeg-devel
+yum -y install ncurses-devel
+yum -y install gpm-devel dbus-devel dbus-glib-devel dbus-python
+yum -y install GConf2-devel pkgconfig
+yum -y install libXft-devel
+
+#3. Build the emacs installation files
+#Within the emacs-23.3 directory enter the following commands at the Konsole:
+./configure --prefix=/usr/local --with-x-toolkit=gtk
+make
+make install
+}
+
+_install_emacs_23 $*

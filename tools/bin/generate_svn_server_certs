@@ -1,0 +1,22 @@
+#!/bin/bash
+mkcert -C -n "${CA_NAME}" -p '1!v3s3RV3r'
+mkcert -s -n "larry.ucsf.edu" -p '1!v3s3RV3r'
+
+function gencert(){
+echo "Generating cert for ${1}";
+mkcert -c -n "${1}" -p '1!v3s3RV3r'
+}
+
+gencert "alex"
+gencert "larry"
+gencert "kevin"
+gencert "angela"
+gencert "orlando"
+gencert "garland"
+gencert "robert"
+
+TODAY=`date +"%m-%d-%y"`
+SERVER_DIR="server-certs-$TODAY"
+scp -r certificates lroberts@larry.ucsf.edu:~/"${SERVER_DIR}"
+
+echo "now, on the server, install the certs in apache: cp -R server-certs-2jun2011 /etc/httpd/conf.d/larry.ucsf.edu-certs"

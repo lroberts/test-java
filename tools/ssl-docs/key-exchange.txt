@@ -1,0 +1,1000 @@
+   12  schemagen -cp $CLASSPATH -d testout
+   13  ls testout/
+   14  schemagen -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/
+   15  schemagen -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java 
+   16  wget http://jaxb.java.net/2.2.5/JAXB2_20120218.jar
+   17  java -jar JAXB2_20120218.jar 
+   18  cp -R /opt/jdk1.6.0_22/lib/endorsed opt-jdk-lib-endorsed
+   19  cp -R /opt/jdk1.6.0_22/jre/lib/endorsed opt-jdk-jre-lib-endorsed
+   20  java -jar JAXB2_20120218.jar 
+   21  jaxb-ri-20120218/bin/schemagen.sh 
+   22  chmod +x jaxb-ri-20120218/bin/schemagen.sh 
+   23  jaxb-ri-20120218/bin/schemagen.sh 
+   24  ./jaxb-ri-20120218/bin/schemagen.sh -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java 
+   25  emacs jaxb-ri-20120218/bin/schemagen.sh 
+   26  mvn -X clean
+   27  cp jaxb-ri-20120218/lib/*.jar /opt/jdk1.6.0_22/jre/lib/endorsed/
+   28  sudo cp jaxb-ri-20120218/lib/*.jar /opt/jdk1.6.0_22/jre/lib/endorsed/
+   29  schemagen -cp ~/.m2/$CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java 
+   30  ./jaxb-ri-20120218/bin/schemagen.sh -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java 
+   31  which schemagen
+   32  emacs /opt/jdk1.6.0_22/bin/schemagen 
+   33  pwd
+   34  ./export
+   35  ./export.sh
+   36  ./export.sh
+   37  ./export.sh
+   38  ./export.sh
+   39  ./export.sh
+   40  ./export.sh
+   41  ./export.sh
+   42  ./export.sh
+   43  ./export.sh
+   44  pwd
+   45  bash ./export.sh
+   46  cd /home/CAMPUS/lroberts/Development/checkouts/_v2_still_used/webapp-v2/v2/immunization/export/xsd
+   47  schemagen -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   48  schemagen -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   49  emacs src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   50  cd /usr/local/tomcat-sis/webapps/studentportalDeployment/site/myhealth.jsp
+   51  emacs /usr/local/tomcat-sis/webapps/studentportalDeployment/site/myhealth.jsp
+   52  cd /home/CAMPUS/lroberts/Development/checkouts/_v2_still_used/webapp-v2/v2/immunization/export/xsd
+   53  schemagen -cp ~/.m2/$CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   54  schemagen -cp ~$CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   55  schemagen -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   56  classpath ../../target/immunization-1.7-SNAPSHOT/WEB-INF/lib/
+   57  schemagen -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   58  export CLASSPATH=$CLASSPATH:../../target/immunization-1.7-SNAPSHOT/WEB-INF/classes/
+   59  schemagen -cp $CLASSPATH -d testout src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java
+   60  ls
+   61  ls testout/
+   62  emacs testout/schema1.xsd 
+   63  diff ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties 
+   64  diff ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties |grep model
+   65  diff ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties |grep model.demographic
+   66  /usr/bin/diff ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties |grep model.demographic
+   67  /usr/bin/diff ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties |grep model.demographic.fields=
+   68  /usr/bin/diff ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties |grep model.demographic.fields= > mh-field.diff
+   69  emacs mh-field.diff 
+   70  emacs mh-field.diff 
+   71  tar zcvf mh-models.tar.gz ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties ../../../mentalhealth/model.properties 
+   72  cp mh-models.tar.gz ~/
+   73  tomcat_log 
+   74  emacs /usr/local/tomcat-sis/logs/webapp_mentalhealth.log 
+   75  emacs /usr/local/tomcat-sis/logs/webapp_mentalhealth.log 
+   76  mkdir immunization-xsd
+   77  schemagen -cp $CLASSPATH -d immunization-xsd src/main/java/edu/ucsf/shs/immunization/model/ImmunizationHistory.java src/main/java/edu/ucsf/shs/immunization/model/PpdReport.java src/main/java/edu/ucsf/shs/immunization/model/Attestation.java
+   78  ls immunization-xsd/
+   79  emacs immunization-xsd/schema1.xsd 
+   80  ls
+   81  rm -rf testout
+   82  rm JAXB2_20120218.jar 
+   83  echo $CLASSPATH
+   84  rm -ri jaxb-ri-20120218
+   85  rm -rf jaxb-ri-20120218
+   86  mkdir ~/Development/jdk-endorsed-copies-15may2012
+   87  mv opt-jdk-* ~/Development/jdk-endorsed-copies-15may2012/
+   88  ls
+   89  rm mh-*
+   90  ls
+   91  rm -rf src/test
+   92  rm -rf src/main/resources
+   93  rm -rf src/main/java/net
+   94  nuke '*.svn'
+   95  ls
+   96  ls
+   97  cd ..
+   98  ls
+   99  cd ..
+  100  cp -R export ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/
+  101  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/
+  102  cd export
+  103  cd xsd/
+  104  rm -rf immunization-xsd
+  105  rm -rf src/main/java/edu
+  106  cp -R ../../src/main/java/edu src/main/java/
+  107  emacs src/main/java/edu/ucsf/shs/mentalhealth/model/Demographic.java 
+  108  cd Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/export
+  109  ls
+  110  cd xsd/
+  111  emacs pom.xml 
+  112  ls
+  113  pwd
+  114  cd ../..
+  115  mv ~/.m2 ~/.m2-webapp3
+  116  mv ~/.m2-webapp2 ~/.m2
+  117  mvn -o clean package -P postgresql,local
+  118  ls target/
+  119  cd export/xsd/
+  120  classpath ../../target/mentalhealth-1.0-SNAPSHOT/WEB-INF/lib/
+  121  export CLASSPATH=$CLASSPATH:../../target/mentalhealth-1.0-SNAPSHOT/WEB-INF/classes/
+  122  mkdir mentalhealth-xsd
+  123  schemagen -cp $CLASSPATH -d mentalhealth-xsd src/main/java/edu/ucsf/shs/mentalhealth/model/Coping.java src/main/java/edu/ucsf/shs/mentalhealth/model/CounselingHistory.java src/main/java/edu/ucsf/shs/mentalhealth/model/Demographic.java src/main/java/edu/ucsf/shs/mentalhealth/model/FamilyAndCulturalBackground.java src/main/java/edu/ucsf/shs/mentalhealth/model/HealthAndSocialIssues.java src/main/java/edu/ucsf/shs/mentalhealth/model/Impact.java src/main/java/edu/ucsf/shs/mentalhealth/model/ProblemDescription.java src/main/java/edu/ucsf/shs/mentalhealth/model/SubstanceUse.java
+  124  ls mentalhealth-xsd/
+  125  emacs mentalhealth-xsd/schema1.xsd 
+  126  emacs mentalhealth-xsd/schema1.xsd 
+  127  pwd
+  128  cd Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/
+  129  mvn_skip_test 
+  130  cp target/webapp-2.1-SNAPSHOT.jar /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/lib/
+  131  emacs src/main/java/webapp/actions/DynaEntityAction.java 
+  132  trunk
+  133  emacs webapp/src/main/java/webapp/engine/DateAdapter.java 
+  134  ./export.sh
+  135  ./export.sh
+  136  ./export.sh
+  137  ./export.sh
+  138  ./export.sh
+  139  ./export.sh
+  140  cp -R xsd/src/main/java/edu/ucsf/shs/immunization/model .
+  141  ls
+  142  ./export.sh
+  143  ls
+  144  ls testgen/
+  145  tail testgen/schema1.xsd 
+  146  ./export.sh
+  147  pwd
+  148  cd Development/checkouts/_v2_still_used/webapp-v2/v2/immunization/
+  149  clear
+  150  emacs export/xsd/
+  151  cd export/xsd/
+  152  emacs pom.xml 
+  153  mvn -e clean generate-resources
+  154  mvn -o -e clean generate-resources
+  155  emacs pom.xml
+  156  mvn -e clean generate-resources
+  157  emacs pom.xml
+  158  mvn -o -e clean generate-resources
+  159  emacs pom.xml
+  160  mvn -o -e clean generate-resources
+  161  emacs pom.xml
+  162  mvn -o -e clean generate-resources
+  163  pwd
+  164  psql -l
+  165  cd ..
+  166  emacs export.java
+  167  javac export.java
+  168  classpath ../target/immunization-1.7-SNAPSHOT/WEB-INF/lib/
+  169  javac export.java
+  170  java export edu.ucsf.shs.immunization.model.ImmunizationHistory.java
+  171  java export edu.ucsf.shs.immunization.model.ImmunizationHistory
+  172  export CLASSPATH=$CLASSPATH:../target/immunization-1.7-SNAPSHOT/WEB-INF/classes/
+  173  java export edu.ucsf.shs.immunization.model.ImmunizationHistory
+  174  emacs export.java
+  175  ls
+  176  cd ..
+  177  cp -R export /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT
+  178  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT
+  179  mv export WEB-INF/
+  180  cd WEB-INF/
+  181  ls
+  182  cd export/
+  183  which classpath
+  184  emacs ~/.bash_profile
+  185  emacs ~/.bash_env export.sh
+  186  chmod +x
+  187  chmod +x export.sh
+  188  ./export.sh 
+  189  emacs ./export.sh 
+  190  ./export.sh 
+  191  emacs ./export.sh 
+  192  ./export.sh 
+  193  emacs ./export.sh 
+  194  ./export.sh 
+  195  emacs ./export.sh 
+  196  ./export.sh 
+  197  emacs ./export.sh 
+  198  ./export.sh 
+  199  emacs ./export.sh 
+  200  ./export.sh
+  201  emacs ./export.sh 
+  202  ./export.sh
+  203  emacs ./export.sh 
+  204  psql -l
+  205  psql immunization-live-2012
+  206  psql immunization-live-2011
+  207  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export/
+  208  ls
+  209  ./export.sh
+  210  pwd
+  211  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/immunization/model.properties~ 
+  212  emacs ~/Development/checkouts/_v2_still_used/old/webapp/trunk/immunization/model.properties~ 
+  213  emacs ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/src/main/java/webapp/entity/impl/Person.java 
+  214  pwd
+  215  cd ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/
+  216  emacs src/main/java/webapp/entity/impl/Person.java 
+  217  emacs /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/classes/repository_user.xml 
+  218  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export/
+  219  ./export.sh
+  220  pwd
+  221  ./export.sh
+  222  javac export.java
+  223  classpath ../lib/
+  224  export CLASSPATH=$CLASSPATH:../classes/
+  225  ./export.sh
+  226  javac export.java
+  227  javac export.java
+  228  javac export.java
+  229  ./export.sh
+  230  javac export.java
+  231  ./export.sh
+  232  javac export.java
+  233  ./export.sh
+  234  javac export.java
+  235  ./export.sh
+  236  javac export.java
+  237  ./export.sh
+  238  javac export.java
+  239  ./export.sh
+  240  javac export.java
+  241  ./export.sh
+  242  javac export.java
+  243  ./export.sh
+  244  javac export.java
+  245  ./export.sh
+  246  javac export.java
+  247  ./export.sh
+  248  ./export.sh
+  249  ./export.sh
+  250  ./export.sh
+  251  ./export.sh > out
+  252  emacs out 
+  253  rm out
+  254  ./export.sh > out
+  255  emacs out
+  256  rm out
+  257  ./export.sh > out
+  258  emacs out
+  259  rm out
+  260  ./export.sh > out
+  261  emacs out
+  262  trunk
+  263  emacs webapp/src/main/java/webapp/engine/Bean.java 
+  264  mv ~/.m2 ~/.m2-webapp2
+  265  mv ~/.m2-webapp3 ~/.m2
+  266  tunk
+  267  trunk
+  268  cd webapp/webapp-entity-impl/
+  269  mvn -o clean compile -P postgresql,local
+  270  cd ..
+  271  mvn_skip_test 
+  272  cd webapp-entity-impl/
+  273  mvn -o clean compile -P postgresql,local
+  274  emacs src/main/java/webapp/entity/impl/FormUserPermission.java 
+  275  cd ..
+  276  mvn_skip_test 
+  277  cd webapp-entity-impl/
+  278  mvn -o clean compile -P postgresql,local
+  279  mvn -o clean compile -P postgresql,local
+  280  emacs src/main/java/webapp/entity/impl/TestForm.java 
+  281  cd ..
+  282  mvn_skip_test 
+  283  cd webapp-entity-impl/
+  284  mvn -o clean compile -P postgresql,local
+  285  trunk
+  286  cd webapp/
+  287  emacs src/main/java/webapp/engine/Bean.java 
+  288  trunk
+  289  cd webapp/
+  290  emacs src/main/java/webapp/engine/Bean.java 
+  291  trunk
+  292  mvn_skip_test 
+  293  cd webapp/
+  294  mvn_skip_test 
+  295  cd webapp-entity-impl/
+  296  mvn -o clean compile -P postgresql,local
+  297  exit
+  298  trunk
+  299  cd webapp/
+  300  emacs src/main/java/webapp/engine/Bean.java 
+  301  trunk
+  302  cd webapp/
+  303  mvn_skip_test 
+  304  scp StudentActivityCenter_logo.png saa.ucsf.edu:~/
+  305  scp -r sac saa.ucsf.edu:~/
+  306  ssh sac saa.ucsf.edu
+  307  ssh saa.ucsf.edu
+  308  trunk
+  309  emacs webapp/src/main/java/webapp/entity/impl/AbstractEntity.java 
+  310  trunk
+  311  cd webapp/
+  312  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  313  mvn_skip_test 
+  314  cd webapp-entity-impl/
+  315  mvn -o clean compile -P postgresql,local
+  316  cd ..
+  317  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  318  mvn_skip_test 
+  319  cd webapp-entity-impl/
+  320  mvn -o clean compile -P postgresql,local
+  321  cd ..
+  322  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  323  mvn_skip_test 
+  324  cd webapp-entity-impl/
+  325  mvn -o clean compile -P postgresql,local
+  326  emacs log4j.properties
+  327  cd ..
+  328  mvn_skip_test 
+  329  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  330  mvn_skip_test 
+  331  cd webapp-entity-impl/
+  332  mvn -o clean compile -P postgresql,local
+  333  cd ..
+  334  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  335  mvn_skip_test 
+  336  mvn_skip_test 
+  337  ls
+  338  cd Development/checkouts/_v2_still_used/webapp-v2/v2/immunization/
+  339  ls
+  340  ls export/
+  341  emacs export/dump.xml
+  342  cd ex
+  343  cd export/
+  344  ls
+  345  cd xsd/
+  346  ls
+  347  cp -R /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export ~/immunization-export-17may2012
+  348  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export 
+  349  ls
+  350  emacs export.sh
+  351  ./export.sh immuno.dump
+  352  ./export.sh > immuno.dump
+  353  emacs immuno.dump 
+  354  mv immuno.dump immunization-test.xml
+  355  mkdir shcs-xml
+  356  mv immunization-test.xml shcs-xml/
+  357  cp xsd/immunization-xsd/schema1.xsd shcs-xml/immunization.xsd
+  358  emacs shcs-xml/immunization.xsd 
+  359  mv shcs-xml ~/
+  360  psql -l
+  361  pwd
+  362  cd ..
+  363  cp -R export ../../mh-v2/WEB-INF/
+  364  cd ../../mh-v2/WEB-INF/
+  365  emacs classes/repository_database.xml
+  366  cd export/
+  367  emacs export.sh
+  368  ./export.sh
+  369  ./export.sh > mentalhealth-test.xml
+  370  emacs mentalhealth-test.xml 
+  371  cp mentalhealth-test.xml ~/shcs-xml/
+  372  ls
+  373  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/export/xsd/mentalhealth-xsd/
+  374  ./export.sh
+  375  mv model/ImmunizationData.java .
+  376  rm -rf testgen/*
+  377  ./export.sh
+  378  emacs testgen/schema1.xsd 
+  379  ./export
+  380  ./export.sh
+  381  ./export.sh
+  382  ./export.sh
+  383  ./export.sh
+  384  ./export.sh
+  385  ./export.sh
+  386  ./export.sh
+  387  ./export.sh
+  388  ./export.sh
+  389  ./export.sh > immunization-data.xml
+  390  ./export.sh > immunization-data.xml 
+  391  ./export.sh
+  392  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export/
+  393  ls
+  394  cp export.java export.java.working-pre-refactor
+  395  ./export.sh
+  396  ./export.sh
+  397  ./export.sh
+  398  ./export.sh
+  399  ./export.sh
+  400  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/export/xsd/mentalhealth-xsd/
+  401  ls
+  402  cp schema1.xsd ~/shcs-xml/mentalhealth.xsd 
+  403  emacs ~/shcs-xml/mentalhealth.xsd 
+  404  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export
+  405  emacs export.java
+  406  ls
+  407  cp immunization-data.xml ~/shcs-xml/
+  408  rm ~/shcs-xml/immunization-test.xml 
+  409  cp testgen/schema1.xsd ~/shcs-xml/immunization.xsd 
+  410  emacs ~/shcs-xml/immunization.xsd 
+  411  emacs export.sh
+  412  ls -alht ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/
+  413  ls -alht ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/src/main/java/webapp/
+  414  ls -alht ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/src/main/java/webapp/actions/
+  415  ls -alht ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/src/main/java/webapp/entity/
+  416  ls -alht ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/src/main/java/webapp/entity/impl/
+  417  ls -alht ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/src/main/java/webapp/entity/impl
+  418  diff ~/Development/checkouts/_v2_still_used/webapp-v2/v2/webapp/src/main/java/webapp/  ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/src/main/java/webapp/ |less
+  419  emacs export.java ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/src/main/java/webapp/util/XmlExport.java
+  420  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/
+  421  mv ~/.m2 ~/.m2-webapp3
+  422  mv ~/.m2-webapp2 ~/.m2
+  423  mvn_skip_test 
+  424  emacs /home/CAMPUS/lroberts/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/src/main/java/webapp/util/XmlExport.java
+  425  mvn_skip_test 
+  426  emacs /home/CAMPUS/lroberts/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/src/main/java/webapp/util/XmlExport.java
+  427  mvn_skip_test 
+  428  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export/
+  429  emacs export.sh
+  430  emacs export.sh
+  431  ./export.sh
+  432  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/
+  433  emacs src/main/java/webapp/security/encryption/EncryptionKeyHandler.java 
+  434  mvn_skip_test 
+  435  cp target/webapp-2.1-SNAPSHOT.jar /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/lib/webapp-2.1-SNAPSHOT.jar 
+  436  cd /usr/local/tomcat-sis/webapps/immunization-1.7-SNAPSHOT/WEB-INF/export
+  437  ./export.sh
+  438  emacs export.java
+  439  ls
+  440  mkdir junk
+  441  mv xsd junk/
+  442  mv testgen junk/
+  443  rm dump.xml
+  444  mv *.class junk/
+  445  ls
+  446  rm out*
+  447  ls
+  448  ls immun
+  449  ls immun*
+  450  rm immun*
+  451  ls
+  452  rm dump.xml~ 
+  453  cd ../../../mh-v2/WEB-INF/export/
+  454  ls
+  455  cd ..
+  456  mv export export-old
+  457  cp -R ../../immunization-1.7-SNAPSHOT/WEB-INF/export .
+  458  rm -rf export/model
+  459  cp -R export-old/model export/
+  460  ls export-old/export.java
+  461  emacs export-old/export.java
+  462  cd export
+  463  ls model/
+  464  pwd
+  465  rm model/*
+  466  cp ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/export/xsd/src/main/java/edu/ucsf/shs/mentalhealth/model/*.java model/
+  467  ls
+  468  rm *~
+  469  rm export.java.working-pre-refactor 
+  470  rm -rf junk
+  471  ls
+  472  rm ImmunizationData.java 
+  473  ./export.sh 
+  474  emacs export.sh 
+  475  cp ~/Development/checkouts/_v2_still_used/old/webapp/trunk/webapp/target/webapp-2.1-SNAPSHOT.jar ../lib/
+  476  ./export.sh 
+  477  emacs export.sh
+  478  ./export.sh 
+  479  emacs export.java
+  480  ./export.sh 
+  481  emacs MentalhealthData.java
+  482  ./export.sh 
+  483  emacs ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties 
+  484  emacs schema1.xsd 
+  485  emacs ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/model.properties 
+  486  cd ~/Development/checkouts/_v2_still_used/old/webapp/trunk/mentalhealth/
+  487  emacs model
+  488  emacs model.properties 
+  489  ls -al ~/.m2
+  490  ls -al ~/.m2*
+  491  mvn -o clean compile -P postgresql,local
+  492  emacs src/main/java/edu/ucsf/shs/mentalhealth/model/CounselingHistory.java 
+  493  cp /usr/local/tomcat-sis/webapps/mentalhealth-1.0-SNAPSHOT/WEB-INF/classes/edu/ucsf/shs/mentalhealth/model/CounselingHistory.class ~/CounselingHistory-ifreturningstatelasttime-is-date.class
+  494  cp target/classes/edu/ucsf/shs/mentalhealth/model/CounselingHistory.class /usr/local/tomcat-sis/webapps/mh-v2/WEB-INF/classes/edu/ucsf/shs/mentalhealth/model/CounselingHistory.class
+  495  cd /usr/local/tomcat-sis/webapps/mh-v2/WEB-INF/export
+  496  ./export.sh
+  497  emacs model/CounselingHistory.java 
+  498  ./export.sh
+  499  ls
+  500  cp schema1.xsd ~/shcs-xml/mentalhealth.xsd
+  501  ./export.sh > mentalhealth-data.xml
+  502  emacs mentalhealth-data.xml 
+  503  cp mentalhealth-data.xml ~/shcs-xml/
+  504  rm ~/shcs-xml/mentalhealth-test.xml 
+  505  trunk
+  506  mv ~/.m2 ~/.m2-webapp2
+  507  mv ~/.m2-webapp3 ~/.m2
+  508  cd webapp/
+  509  cd webapp-entity-impl/
+  510  mvn -o clean compile -P postgresql,local
+  511  cd ..
+  512  mvn_skip_test 
+  513  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  514  mvn_skip_test 
+  515  cd webapp-entity-impl/
+  516  mvn -o clean compile -P postgresql,local
+  517  cd ..
+  518  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  519  mvn_skip_test 
+  520  mvn_skip_test 
+  521  cd webapp-entity-impl/
+  522  mvn -o clean compile -P postgresql,local
+  523  cd ..
+  524  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  525  mvn_skip_test 
+  526  cd webapp-entity-impl/
+  527  mvn -o clean compile -P postgresql,local
+  528  cd ..
+  529  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  530  mvn_skip_test 
+  531  cd webapp-entity-impl/
+  532  mvn -o clean compile -P postgresql,local
+  533  trunk
+  534  cd webapp/
+  535  mvn_skip_test 
+  536  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  537  mvn_skip_test 
+  538  cd webapp-entity-impl/
+  539  mvn -o clean compile -P postgresql,local
+  540  trunk
+  541  emacs webapp/src/main/java/webapp/engine/Bean.java 
+  542  trunk
+  543  cd webapp/
+  544  cp ~/webapp-entity-impls-temp15-WORKING/*.java src/main/java/webapp/entity/impl/
+  545  mvn_skip_test 
+  546  mvn_skip_test 
+  547  cd webapp-entity-impl/
+  548  mvn -o clean compile -P postgresql,local
+  549  emacs src/main/java/webapp/entity/impl/TestForm.java 
+  550  cd ..
+  551  mvn_skip_test 
+  552  mvn_skip_test 
+  553  cd webapp-entity-impl/
+  554  mvn -o clean compile -P postgresql,local
+  555  emacs src/main/java/webapp/entity/impl/TestForm.java 
+  556  cd ..
+  557  mvn -o clean install
+  558  mvn -o clean test -Dtest=ChainActionTests
+  559  emacs target/surefire-reports/webapp.runtime.ChainActionTests.txt 
+  560  diff src/main/java/webapp/entity/impl/ ~/webapp-entity-impls-temp15-WORKING
+  561  emacs src/main/java/webapp/entity/impl/Person.java 
+  562  diff src/main/java/webapp/entity/impl/ webapp-entity-impl/src/main/java/webapp/entity/impl/
+  563  cp -R src/main/java/webapp/entity/impl ~/webapp-entity-impls-temp16-broken
+  564  emacs src/main/java/webapp/entity/impl/TestAssignment.java
+  565  mvn -o clean test -Dtest=ChainActionTests
+  566  mvn -o clean test
+  567  exit
+  568  trunk
+  569  cd webapp/
+  570  emacs src/main/java/webapp/engine/Bean.java 
+  571  trunk
+  572  emacs webapp/src/main/java/webapp/runtime/actions/mappings/RestrictedMapping.java 
+  573  trunk
+  574   cd webapp/webapp-entity-impl/
+  575  mvn -o clean compile -P postgresql,local
+  576  cd ..
+  577  mvn_skip_test 
+  578  cd webapp-entity-impl/
+  579  mvn -o clean compile -P postgresql,local
+  580  mvn -e -o clean compile -P postgresql,local
+  581  cd ..
+  582  search "PROPERTY_IMPLEMENTS"
+  583  mvn_skip_test 
+  584  cd webapp-entity-impl/
+  585  mvn -e -o clean compile -P postgresql,local
+  586  cd ..
+  587  mvn_skip_test 
+  588  cd webapp-entity-impl/
+  589  mvn -e -o clean compile -P postgresql,local
+  590  emacs src/main/java/webapp/entity/impl/TestAttestation.java 
+  591  cd ..
+  592  mvn -o clean test
+  593  cd webapp-entity-impl/
+  594  mvn -e -o clean install -P postgresql,local,tomcat
+  595  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log 
+  596  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  597  cd ..
+  598  mvn_skip_test 
+  599  cp target/webapp-3.1-SNAPSHOT.jar /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/lib/
+  600  ps -ef | grep catalina
+  601  kill -9 698
+  602  /usr/local/tomcat/bin/startup.sh 
+  603  locate startup.sh
+  604  cd webapp-entity-impl/
+  605  emacs model.properties 
+  606  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  607  emacs /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/classes/config/struts-config.xml 
+  608  cd ..
+  609  mvn_skip_test 
+  610  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  611  psql webapp-entity-impl
+  612  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  613  psql webapp-entity-impl
+  614  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  615  emacs /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/classes/config/log4j.properties 
+  616  ps -ef | grep catalina
+  617  kill -9 14894
+  618  /usr/local/tomcat/bin/startup.sh 
+  619  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  620  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  621  mvn_skip_test 
+  622  mvn_skip_test 
+  623  cd webapp-entity-impl/
+  624  mvn -o clean install -P postgresql,local,tomcat
+  625  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  626  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  627  psql webapp-entity-impl
+  628  cd ..
+  629  mvn_skip_test 
+  630  cp target/webapp-3.1-SNAPSHOT.jar /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/lib/
+  631  ps -ef |grep catalina
+  632  kill -9 16113
+  633  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  634  ps -ef |grep catalina
+  635  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  636  tomcat_log 
+  637  /usr/local/tomcat/bin/startup.sh 
+  638  ps -ef |grep catalina
+  639  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  640  mvn_skip_test 
+  641  mvn_skip_test 
+  642  cp target/webapp-3.1-SNAPSHOT.jar /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/lib/
+  643  ps -ef | grep catalaina
+  644  ps -ef | grep catalina
+  645  kill -9 18529
+  646  /usr/local/tomcat/bin/startup.sh 
+  647  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  648  mvn -o clean test
+  649  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  650  tail -n 300 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  651  mvn -o clean install
+  652  mvn -o clean install
+  653  cp target/webapp-3.1-SNAPSHOT.jar /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/lib/
+  654  ps -ef | grep catalina
+  655  kill -9 20116
+  656  /usr/local/tomcat/bin/startup.sh 
+  657  tomcat_log 
+  658  tail -n 500 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  659  tail -n 700 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  660  tail -n 700 /usr/local/tomcat/logs/catalina.out |less
+  661  tail -n 1700 /usr/local/tomcat/logs/catalina.out |less
+  662  tail -n 1700 /usr/local/tomcat/logs/catalina.2012-05-18.log 
+  663  tail -n 700 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  664  mvn -o clean install
+  665  cp target/webapp-3.1-SNAPSHOT.jar /usr/local/tomcat/webapps/webapp-entity-impl-3.0-SNAPSHOT/WEB-INF/lib/
+  666  ps -ef | grep catalina
+  667  kill -9 22048
+  668  /usr/local/tomcat/bin/startup.sh 
+  669  psql webapp-entity-impl
+  670  tail -n 700 /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log |less
+  671  emacs webapp-entity-impl/model.properties 
+  672  psql webapp-entity-impl
+  673  cd webapp-entity-impl/
+  674  emacs log4j.properties
+  675  mvn -o clean compile -P postgresql,local
+  676  trunk
+  677  cd webapp/
+  678  emacs src/main/java/webapp/runtime/CaseManager.java 
+  679  trunk
+  680  tomcat_log 
+  681  tomcat_log 
+  682  psql webapp-entity-impl
+  683  tomcat_log 
+  684  cd webapp/webapp-entity-impl/
+  685  emacs model.properties 
+  686  psql webapp-entity-impl
+  687  emacs /usr/local/tomcat/logs/webapp_UCSF\ Base\ Entity\ Model.log 
+  688  tomcat_log 
+  689  cd ..
+  690  mvn_skip_test 
+  691  cd webapp-entity-impl/
+  692  mvn -o clean install -P postgresql,local,tomcat
+  693  tomcat_log 
+  694  tomcat_log 
+  695  psql webapp-entity-impl
+  696  tomcat_log 
+  697  trunk
+  698  ls -al ~/.m2*
+  699  cd webapp/
+  700  emacs src/main/java/webapp/runtime/actions/CaseManagerAction.java 
+  701  trunk
+  702  cd webapp/
+  703  mvn_skip_test 
+  704  mvn_skip_test 
+  705  mvn_skip_test 
+  706  mvn -o clean test -Dtest=CaseManagementTests
+  707  mvn -o clean test -Dtest=CaseManagementTests
+  708  mvn -o clean test -Dtest=CaseManagementTests
+  709  mvn -o clean test -Dtest=CaseManagementTests
+  710  emacs target/surefire-reports/webapp.runtime.CaseManagementTests.txt 
+  711  mvn -o clean test -Dtest=CaseManagementTests
+  712  emacs target/surefire-reports/webapp.runtime.CaseManagementTests.txt 
+  713  mvn -o clean test -Dtest=CaseManagementTests
+  714  mvn -o clean test -Dtest=CaseManagementTests
+  715  mvn -o clean test -Dtest=CaseManagementTests
+  716  mvn -o clean test -Dtest=CaseManagementTests
+  717  emacs target/surefire-reports/webapp.runtime.CaseManagementTests.txt 
+  718  mvn -o clean test -Dtest=CaseManagementTests
+  719  exit
+  720  trunk 
+  721  emacs webapp/src/test/java/webapp/runtime/CaseManagementTests.java
+  722  trunk
+  723  cd webapp/
+  724  mvn -o clean test -Dtest=CaseManagementTests
+  725  emacs target/surefire-reports/webapp.runtime.CaseManagementTests.txt 
+  726  mvn -o clean test -Dtest=CaseManagementTests
+  727  psql webapp
+  728  mvn -o clean test -Dtest=CaseManagementTests
+  729  psql webapp
+  730  tomcat_log 
+  731  psql webapp-entity-impl
+  732  trunk
+  733  ls
+  734  cd webapp/
+  735  mvn -o clean test -Dtest=CaseManagementTests
+  736  cd webapp-entity-impl/
+  737  emacs model.properties 
+  738  mvn -o clean compile -P postgresql,local
+  739  emacs src/main/webapp/pages/TestAttestationFormContent.jsp 
+  740  cd ..
+  741  mvn_skip_test 
+  742  mvn_skip_test 
+  743  mvn_skip_test 
+  744  cd webapp-entity-impl/
+  745  mvn -o clean compile -P postgresql,local
+  746  trunk
+  747  cd webapp/
+  748  emacs src/test/java/webapp/runtime/CaseManagementTests.java
+  749  ps -ef | grep catalina
+  750  tail -n 300 /usr/local/tomcat-sis/logs/catalina.out |less
+  751  cd Development/checkouts/_v2_still_used/old/webapp/trunk/
+  752  emacs webapp/src/main/java/webapp/actions/AbstractStrutsAction.java
+  753  mv ~/.m2 ~/.m2-webapp3
+  754  mv ~/.m2-webapp2 ~/.m2
+  755  ls
+  756  pwd
+  757  cd webapp/
+  758  mvn_skip_test 
+  759  emacs src/main/java/webapp/actions/StudentAffiliation.java
+  760  emacs src/main/java/webapp/actions/StudentAffiliation.java
+  761  mvn_skip_test 
+  762  cp target/webapp-2.1-SNAPSHOT.jar /usr/local/tomcat-sis/webapps/mh-v2/WEB-INF/lib/
+  763  ps -ef | grep catalina
+  764  kill -9 2277
+  765  /usr/local/tomcat-sis/bin/startup.sh 
+  766  pwd
+  767  emacs src/main/java/webapp/actions/StudentAffiliation.java
+  768  mvn_skip_test 
+  769  emacs src/main/java/webapp/actions/StudentAffiliation.java
+  770  mvn_skip_test 
+  771  emacs src/main/java/webapp/actions/ShibbolethContext.java
+  772  mvn_skip_test 
+  773  cp target/webapp-2.1-SNAPSHOT.jar /usr/local/tomcat-sis/webapps/mh-v2/WEB-INF/lib/
+  774  export TOMCAT_HOME=/usr/local/tomcat-sis
+  775  export CATALINA_HOME=/usr/local/tomcat-sis/
+  776  /usr/local/tomcat-sis/bin/startup.sh 
+  777  ps -ef | grep catalina
+  778  tail -n 300  /usr/local/tomcat-sis/logs/catalina.out |less
+  779  emacs src/main/java/webapp/actions/ShibbolethContext.java
+  780  mvn_skip_test 
+  781  cp target/webapp-2.1-SNAPSHOT.jar /usr/local/tomcat-sis/webapps/mh-v2/WEB-INF/lib/
+  782  ps -ef | grep catalina
+  783  kill -9 327
+  784  /usr/local/tomcat-sis/bin/startup.sh 
+  785  ps -ef | grep catalina
+  786  emacs /usr/local/tomcat-sis/webapps/mh-v2/pages/content/logonContent.jsp
+  787  emacs src/main/java/webapp/actions/ShibbolethContext.java
+  788  trunk
+  789  cd webapp/webapp-entity-impl/
+  790  mvn -o clean compile -P postgresql,local
+  791  cd ..
+  792  search "getInheritedFieldMeta"
+  793  tail -n 300 /usr/local/tomcat-sis/logs/catalina.out |less
+  794  tail -n 300 /usr/local/tomcat-sis/logs/catalina.out |less
+  795  tail -n 300 /usr/local/tomcat-sis/logs/localhost.2012-05-21.log 
+  796  tail -n 300 /usr/local/tomcat-sis/logs/localhost.2012-05-21.log 
+  797  tail -n 300 /usr/local/tomcat-sis/logs/host-manager.2012-05-21.log 
+  798  tail -n 300 /usr/local/tomcat-sis/logs/catalina.out 
+  799  tomcat_log 
+  800  mv ~/.m2 ~/.m2-webapp2
+  801  mv ~/.m2-webapp3 ~/.m2
+  802  trunk
+  803  emacs webapp/src/main/java/webapp/engine/FormJSP.java 
+  804  locate newtools
+  805  scp -r /var/webapp lroberts@student-new.ucsf.edu:~/var-webapp
+  806  trunk
+  807  ls -al ~/.m2*
+  808  cd webapp/
+  809  svn status
+  810  svn ls src/main/resources/pages/entity
+  811  svn add src/main/java/webapp/runtime/AssignmentNavigator.java
+  812  svn add src/main/java/webapp/runtime/DefaultAssignmentNavigator.java
+  813  svn ci
+  814  emacs src/main/java/webapp/engine/Bean.java 
+  815  trunk
+  816  cd webapp/
+  817  mvn_skip_test 
+  818  cd webapp-entity-impl/
+  819  mvn -o clean compile -P postgresql,local
+  820  cd ..
+  821  search "addModelMetadataForClass"
+  822  mvn -o clean test
+  823  emacs target/surefire-reports/webapp.engine.BeanTests.txt 
+  824  cd webapp-entity-impl/
+  825  mvn -o clean install -P postgresql,local
+  826  cd ..
+  827  emacs target/surefire-reports/webapp.engine.BeanTests.txt 
+  828  mvn -o clean test
+  829  mvn_skip_test 
+  830  mvn_skip_test 
+  831  cd webapp-entity-impl/
+  832  mvn -o clean install -P postgresql,local
+  833  mvn -e -o clean install -P postgresql,local
+  834  cd ..
+  835  mvn_skip_test 
+  836  cd webapp-entity-impl/
+  837  mvn -e -o clean install -P postgresql,local
+  838  cd ..
+  839  mvn_skip_test 
+  840  cd webapp-entity-impl/
+  841  mvn -e -o clean install -P postgresql,local
+  842  cd ..
+  843  mvn_skip_test 
+  844  cd webapp-entity-impl/
+  845  mvn -e -o clean install -P postgresql,local
+  846  cd ..
+  847  mvn -o clean test
+  848  cd ../shcs/immunization/
+  849  mvn -o clean compile -P postgresql,local
+  850  cd ../../webapp/
+  851  search "setFieldMetadata"
+  852  mvn_skip_test 
+  853  mvn_skip_test 
+  854  cd webapp-entity-impl/
+  855  mvn -o clean compile -P postgresql,local
+  856  mvn -o clean install -P postgresql,local
+  857  cd ..
+  858  mvn -o clean test
+  859  cd webapp-entity-impl/
+  860  cd ..
+  861  mvn_skip_test 
+  862  trunk
+  863  cd webapp/webapp-entity-impl/
+  864  mvn -o clean compile -P postgresql,local
+  865  cd ..
+  866  mvn_skip_test 
+  867  cd webapp-entity-impl/
+  868  mvn -o clean compile -P postgresql,local
+  869  CD ..
+  870  mvn_skip_test 
+  871  cd ..
+  872  mvn_skip_test 
+  873  cd webapp-entity-impl/
+  874  mvn -o clean compile -P postgresql,local
+  875  emacs src/main/webapp/pages/TestAttestationFormContent.jsp 
+  876  cd ..
+  877  mvn -o clean install
+  878  mvn -o clean install
+  879  search "addFieldMetadata"
+  880  mvn_skip_test 
+  881  cd webapp-entity-impl/
+  882  mvn -o clean install -P postgresql,local
+  883  cd ..
+  884  mvn -o clean install
+  885  mvn -o clean install
+  886  cd ../shcs/immunization/
+  887  mvn -o clean compile -P postgresql,local
+  888  cd ../../webapp/
+  889  mvn -o clean install
+  890  cd webapp-entity-impl/
+  891  mvn -o clean install -P postgresql,local,tomcat
+  892  emacs src/main/webapp/pages/TestAssignmentFormContent.jsp 
+  893  cd ..
+  894  mvn_skip_test 
+  895  mvn_skip_test 
+  896  cd webapp-entity-impl/
+  897  mvn -o clean install -P postgresql,local,tomcat
+  898  cd ..
+  899  mvn -o clean install
+  900  emacs target/surefire-reports/webapp.engine.ControllerTests.txt 
+  901  emacs src/test/resources/config/struts/runtime-tests-struts-config.xml 
+  902  mvn_skip_test 
+  903  cd webapp-entity-impl/
+  904  mvn_deploy 
+  905  emacs src/main/webapp/pages/TestAssignmentFormContent.jsp 
+  906  emacs src/main/resources/config/struts-config.xml 
+  907  cd ..
+  908  mvn -o clean install
+  909  mvn -o clean test -Dtest=CaseManagementTests
+  910  emacs target/surefire-reports/webapp.runtime.CaseManagementTests-output.txt 
+  911  trunk
+  912   emacs webapp/src/main/java/webapp/engine/Bean.java 
+  913  psql -p 6789 -h student-new.ucsf.edu -l
+  914  psql -p 6789 -h student-new.ucsf.edu immunization-live-2011
+  915  trunk
+  916  cd shcs/appointments/
+  917  emacs src/main/java/edu/ucsf/shs/appointments/AppointmentCheck.java 
+  918  mvn_skip_test 
+  919  emacs src/main/java/edu/ucsf/shs/appointments/AppointmentCheck.java 
+  920  mvn_skip_test 
+  921  trunk
+  922  cd webapp/
+  923  ls
+  924  ls docs/sandbox/DrupalBean.java 
+  925  emacs docs/sandbox/DrupalBean.java 
+  926  mv .m2 .m2-webapp3
+  927  mv .m2-webapp2 .m2
+  928  cd Development/checkouts
+  929  find . -name "address"
+  930  cd new_webapp/trunk/isso/address/
+  931  ls
+  932  emacs pom.xml 
+  933  cd ..
+  934  cp -R address ~/Development/checkouts/event
+  935  cd ~/Development/checkouts/event/
+  936  emacs pom.xml 
+  937  cd ..
+  938  mv event/
+  939  mv event insideguide-events
+  940  cd insideguide-events/
+  941  emacs model.properties 
+  942  mvn -o clean install
+  943  ls
+  944  ls src/main/resources/insideguide-events/insideguide-events.install 
+  945  sudo cp -R src/main/resources/insideguide-events /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/
+  946  sudo chown -R aegir:apache /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/insideguide-events
+  947  sudo su
+  948  pwd
+  949  cd ..
+  950  mv insideguide-events insideguide_events/
+  951  cd insideguide_events/
+  952  emacs model.properties 
+  953  rm -rf src/main/resources/*
+  954  mvn -o clean install
+  955  sudo cp -R src/main/resources/insideguide_events /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/
+  956  sudo chown -R aegir:apache /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/
+  957  pwd
+  958  emacs model.properties 
+  959  mysql -u root -p
+  960  mkdir src/main/merge/php
+  961  cp ~/OSL-php/insideguide_submission.php src/main/merge/php/
+  962  rm -rf src/main/resources/*
+  963  mvn -o clean install
+  964  sudo rm -rf /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/insideguide_events
+  965  sudo cp -R src/main/resources/insideguide_events /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/
+  966  sudo chown -R aegir:apache /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/insideguide_events
+  967  emacs src/main/merge/php/insideguide_submission.php 
+  968  sudo emacs src/main/merge/php/insideguide_submission.php /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/insideguide_events/insideguide_events.module 
+  969  mysql -u root -p
+  970  mysql -u root -p
+  971  mysql -u root -p
+  972  mysql -u root -p
+  973  sudo emacs src/main/merge/php/insideguide_submission.php /var/aegir/platforms/saa-isso-18apr2011/sites/test4.larry.ucsf.edu/modules/insideguide_events/insideguide_events.module 
+  974  mysql -u root -p
+  975  sudo su
+  976  trunk
+  977  cd ~/.m2
+  978  exit
+  979  mysql -u root -p
+  980  ls -al .m2*
+  981  mv .m2 .m2-webapp2
+  982  mv .m2-webapp3 .m2
+  983  trunk
+  984  cd shcs/appointments/
+  985  mvn_skip_test 
+  986  emacs /home/CAMPUS/lroberts/Development/checkouts/new_webapp/trunk/shcs/appointments/src/main/java/edu/ucsf/shs/appointments/Appt.java
+  987  emacs /home/CAMPUS/lroberts/Development/checkouts/new_webapp/trunk/shcs/appointments/src/main/java/edu/ucsf/shs/appointments/Appt.java
+  988  mvn_skip_test 
+  989  scp target/appointments-1.0-SNAPSHOT-exec.jar 64.54.147.19:~/
+  990  ssh 64.54.147.19
+  991  sudo su
+  992  trunk
+  993  cd sfa/chartfield-validator/requester/src/main/java/edu/ucsf/sis/chartfield/ChartfieldRequester.java 
+  994  emacs sfa/chartfield-validator/requester/src/main/java/edu/ucsf/sis/chartfield/ChartfieldRequester.java 
+  995  cp -R sfa/chartfield-validator/requester ~/Development/checkouts/clienttest
+  996  cd ~/Development/checkouts/clienttest/
+  997  emacs pom.xml 
+  998  emacs src/test/java/ConnectTest.java 
+  999  cd Development/checkouts/clienttest/
+ 1000  mvn clean test
+ 1001  mvn -Djavax.net.debug=ssl:handshake clean test
+ 1002  trunk
+ 1003  cd tools/bin/
+ 1004  cd ~/Development/checkouts/clienttest/
+ 1005  mvn clean test
+ 1006  mvn clean test
+ 1007  emacs kevin-certs/client-kevin.cer 
+ 1008  openssl x509 -in kevin-certs/client-kevin.cer -inform PEM -out kevin-certs/client-kevin.der -outform DER
+ 1009  keytool -storepass changeit -keystore src/main/resources/specialks -importcert -alias kevin-client-cert-der -file kevin-certs/client-kevin.der -trustcacerts
+ 1010  ls
+ 1011  history > key-exchange.txt

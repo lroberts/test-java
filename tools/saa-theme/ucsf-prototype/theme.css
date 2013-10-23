@@ -1,0 +1,7 @@
+/* colors */
+body{color: #3f454f;}
+
+input, textarea, select { color: #3f454f; }
+
+h1,h2,h3,h4,h5 { color: #650c1a; }
+h1 a,h2 a,h3 a,h4 a,h5 a { color: #650C1A !important; }

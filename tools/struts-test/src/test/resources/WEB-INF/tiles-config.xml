@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tiles-definitions>
+    <definition name="pageLayout" path="/layouts/pageLayout.jsp"/>
+    <definition name="page.library" extends="pageLayout">
+        <put name="key" value="value"/>
+    </definition>
+    <definition name="another.page" extends="pageLayout">
+        <put name="key" value="another.value"/>
+    </definition>
+</tiles-definitions>

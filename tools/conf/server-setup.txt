@@ -1,0 +1,20 @@
+SetUp for Development servers
+
+1. get static ip
+2. use dhcp router as gateway (assume 192.168.1.1 as gateway address)
+3. setup development server with a fixed dhcp address (assume 192.168.1.33)
+4. on router, direct tcp traffic on ports 5432, 8080, 22 to dev server
+5. on dev server ensure incoming connections are allow on the above ports (Mac SysPrefs Sharing)
+6. setup postgres as normal
+7.  => add entry in  pg_hba.conf to allow connections from 192.168.1.1 (see 
+       example pg_hba.conf in this directory)
+8.  => add entry in  postgresql.conf to allow listen on port 5432 (see 
+       example postgresql.conf in this directory)
+9. restart postgres:
+   pg_ctl -D /Users/larry/Development/cluster -l /Users/larry/Development/cluster/log.txt restart
+9. setup tomcat as normal, ensuring that the manager application is running
+   and you know the user name and password for an admin (see example tomcat-users.xml
+   is this directory)
+10. create a deployment property file for webapp
+
+Done.

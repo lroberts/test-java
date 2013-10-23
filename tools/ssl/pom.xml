@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>edu.ucsf.tools</groupId>
+  <artifactId>ssl</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>SSL Utilities</name>
+  <description>
+
+  </description>
+
+  <dependencies>
+    <!--
+    <dependency>
+      <groupId>com.sun.jdk</groupId>
+      <artifactId>deploy-jar</artifactId>
+      <version>1.5.0_07</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/windows-jdk-1.5.0_07-jre-deploy.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>edu.ucsf.sis.chartfield</groupId>
+      <artifactId>chartfield-schemas</artifactId>
+      <version>${version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>edu.ucsf.saa.sis</groupId>
+      <artifactId>portal</artifactId>
+      <version>RELEASE_2_0_4</version>
+    </dependency>
+-->
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.14</version>
+        <type>jar</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.8.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>drivers</groupId>
+      <artifactId>db2-jcc</artifactId>
+<!--      <version>9.7</version> -->
+      <version>9.5</version>
+    </dependency>
+
+<!--
+    <dependency>
+      <groupId>drivers</groupId>
+      <artifactId>db2-jcc-license</artifactId>
+      <version>9.7</version>
+    </dependency>
+
+NEW: moved this to parent pom and updated to RELEASE_2_0_4
+
+    <dependency>
+      <groupId>edu.ucsf.sis</groupId>
+      <artifactId>portal</artifactId>
+      <version>4_14_2008</version>
+    </dependency>
+
+-->
+
+  </dependencies>
+  
+  <build>
+    
+    <plugins>
+
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+<!--  -Dsun.security.ssl.allowLegacyHelloMessages=true -Dsun.security.ssl.allowUnsafeRenegotiation=true -->
+          <argLine>-Xms1024M -Xmx2048M -Djavax.net.debug=ssl:handshake</argLine>
+	  <redirectTestOutputToFile>true</redirectTestOutputToFile> 
+        </configuration>
+     </plugin>
+
+     </plugins>
+
+   </build>
+
+</project>

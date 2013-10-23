@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>edu.ucsf.tools</groupId>
+  <artifactId>struts-config</artifactId>
+  <version>1.3</version>
+
+  <packaging>jar</packaging>
+  <name>struts config</name>
+  <description>
+    JAXB bindings for struts descriptor
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>3rdParty.jaxb</groupId>
+      <artifactId>jaxb2-maven-plugin</artifactId>
+      <version>2.1.8</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+
+    <plugins>
+      <plugin>
+	<groupId>3rdParty.jaxb</groupId>
+	<artifactId>jaxb2-maven-plugin</artifactId>
+	<version>2.1.8</version>
+	<executions>
+	  <execution>
+	    <id>${groupId}-${artifactId}-descriptor</id>
+	    <phase>generate-sources</phase>
+	    <goals><goal>xjc</goal></goals>
+	    <configuration>
+	      <!-- MODIFIED JAXB2 PLUGIN ONLY 
+		   <convertFromDtd>true</convertFromDtd>
+	      -->
+	      <extension>true</extension>
+	      <staleFile>${project.build.directory}/jaxb-source/.staleFlag-${artifactId}</staleFile>
+	      <packageName>edu.ucsf.tools.struts.config</packageName>
+	      <outputDirectory>${project.build.sourceDirectory}</outputDirectory>
+	      <readOnly>true</readOnly>
+	      <schemaDirectory>src/main/resources/struts/config/${version}</schemaDirectory>
+			
+	      <bindingDirectory>src/main/resources/struts/config/${version}</bindingDirectory>
+	      
+	      <includeSchemas>
+		<includeSchema>**/*.xsd</includeSchema>
+	      </includeSchemas>
+	      
+	      <excludeSchemas>
+		<excludeSchema>test*.xsd</excludeSchema>
+	      </excludeSchemas>
+	      
+	      <includeBindings>
+		<includeSchema>**/*.xjb</includeSchema>
+	      </includeBindings>
+	      
+	      <!-- MODIFIED JAXB2 PLUGIN ONLY -->
+	      <clean>true</clean>
+	      <convertFromDtd>false</convertFromDtd>
+	      <dtdFiles>${groupId}-${artifactId}.dtd</dtdFiles>
+	      
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+    </plugins>
+</build>
+
+
+</project>

@@ -1,0 +1,19 @@
+
+# Convert PEM Certificate to ca-bundle.crt format
+function _pem2crt(){
+# !/bin/sh
+# Friendly Name
+openssl x509 -in $1 -text -noout | sed -n -e '/^[ ]\+Subject:/{s/^.*CN=\([^,]*\).*/\1/;p}' 
+# Underline Friendly Name with equal signs
+openssl x509 -in $1 -text -noout | sed -n -e '/^[ ]\+Subject:/{s/^.*CN=\([^,]*\).*/\1/;p}' | sed -e 's/./=/g'
+# Output Fingerprint and swap = for :
+openssl x509 -in $1 -noout -fingerprint | sed -e 's/=/: /'
+# Output PEM Data:
+log 'PEM Data:'
+# Output Certificate
+openssl x509 -in $1
+# Output Cettificate text swapping Certificate with Certificate Ingredients
+openssl x509 -in $1 -text -noout | sed -e 's/^Certificate:/Certificate Ingredients:/'
+}
+
+_pem2crt $*

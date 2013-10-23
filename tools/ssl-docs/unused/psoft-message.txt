@@ -1,0 +1,13 @@
+<IBRequest>
+  <ExternalOperationName>ZSI_CFVAL_REQUEST.VERSION_1</ExternalOperationName>
+  <From>
+    <RequestingNode>ZSI_CFVAL_REQNODE</RequestingNode>
+ </From>
+<ContentSections>
+   <ContentSection>
+     <Data>
+     <![CDATA[]]>
+     </Data>
+   </ContentSection>
+ </ContentSections>
+</IBRequest>

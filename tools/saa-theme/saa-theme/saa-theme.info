@@ -1,0 +1,56 @@
+name = SAA Theme
+description = UCSF SAA Theme
+version = VERSION
+core = 6.x
+engine = phptemplate
+base theme = ucsf-prototype
+
+features[] =
+; features[] = logo
+; features[] = name
+; features[] = slogan
+; features[] = mission
+; features[] = node_user_picture
+; features[] = comment_user_picture
+; features[] = search
+; features[] = favicon
+; features[] = primary_links
+
+
+
+
+regions[sys_msg] = System message
+regions[header] = Header
+
+regions[header_image] = Home hero image
+regions[home_center] = Home center column
+
+regions[left] = Left sidebar
+regions[right] = Right sidebar
+regions[content] = Content
+regions[footer] = Footer
+regions[closure] = Closure
+
+; stylesheets[all][] = base.css
+; stylesheets[all][] = layout.css
+; stylesheets[all][] = superfish.css
+stylesheets[all][] = theme.css
+stylesheets[all][] = configurable-colors.css
+; stylesheets[all][] = ucla-mwf-3c9159a/root/assets/css.php
+
+scripts[] = jquery.toggleval_2.1.min.js
+scripts[] = prototype.js
+scripts[] = builder.js
+scripts[] = effects.js
+scripts[] = dragdrop.js
+
+scripts[] = hoverIntent.js
+scripts[] = jquery.bgiframe.min.js
+scripts[] = superfish.js
+scripts[] = supersubs.js
+scripts[] = cufon-yui.js
+scripts[] = Frutiger_200.font.js
+scripts[] = common.js
+
+scripts[] = mobile.js
+; scripts[] = ucla-mwf-3c9159a/root/assets/js.php

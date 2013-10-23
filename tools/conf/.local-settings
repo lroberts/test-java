@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# this local settings file is for the db2inst1 user
+# and it should be included by ~/.bash_profile
+./sqllib/db2profile
+export DB2INSTANCE=db2inst1
+export DB2PATH=~/sqllib
+export PATH=$PATH:$DB2PATH/bin:/usr/local/maven/bin
+
+export DB2PATH=/opt/ibm/db2/V9.5/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DB2PATH/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/db2inst1/sqllib/lib
+export JAVA_HOME=/usr/java/jdk1.6.0_07
+
+
+# if you need to start the db2 server, login as the instance user (that uses
+# this settings file) and then execute:
+
+# ./sqllib/adm/db2start
+
+# executing
+#    ./sqllib/adm/db2stop will stop the instance
+
+#    db2look -d SAMPLE  will show you the schema of the sample db
+
+# executing:
+#     db2 create database immuno 
+#   will create a new database, and executing:
+
+#     db2 connect to immuno
+#   will connect to it 

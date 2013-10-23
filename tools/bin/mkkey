@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# mkkey          - create a new key and update (this) client and 
+#                  the remote server (uses ssh-keygen)
+function _mkkey(){
+
+# MUST RESET OPTIND
+OPTIND=1
+local FIRST_ARG
+local FIRST_ARG_IDX
+local LAST_OPTION
+local LAST_OPTION_IDX
+
+local keyName=tmp_key_`date +%d%b%Y-%H-%M-%S`
+local keyDir=~/.ssh
+local user=${USER}
+local DEFAULT_SERVER="remote.com"
+local COMMENT=
+local BE_VERBOSE
+local OTHER_SERVER
+
+while getopts "vn:d:c:s:u:" flag
+do
+    case "$flag" in
+      v)  BE_VERBOSE=on;;
+      n)  keyName="${OPTARG}";;
+      d)  keyDir="${OPTARG}";;
+      c)  COMMENT="${OPTARG}";;
+      s)  OTHER_SERVER="${OPTARG}";;
+      u)  user="${OPTARG}";;
+      \?) log "usage: mkkey -n remote_backup_auth -c \"admin key\""
+          log ""
+          log "       the key name should not contain any spaces"
+          return 1;;
+    esac
+done
+
+local SERVER=${OTHER_SERVER:-${DEFAULT_SERVER}}
+local defaultComment="${SERVER} ${keyName} key."
+local KEY_DIR="${keyDir}/${keyName}"
+local PRIVATE_KEY="${keyName}"
+local PUBLIC_KEY="${PRIVATE_KEY}.pub"
+
+log "Have private key name [${PRIVATE_KEY}], comment \"${COMMENT}\", dir ${KEY_DIR}"
+
+# THE SIMPLE WAY - JUST A KEY PAIR
+# -t rsa uses ssh protocol 2 (-t rsa1 for version 1)
+ssh-keygen  -t rsa -b 2048 -C "${COMMENT}" -f "${PRIVATE_KEY}"
+or_die " Unable to create key pair [$?]"
+
+if [ ! -e ${KEY_DIR} ]
+then
+  mkdir -p "${KEY_DIR}"
+fi
+
+mv "${PRIVATE_KEY}" "${KEY_DIR}"
+mv "${PUBLIC_KEY}" "${KEY_DIR}"
+
+# CREATE DISK IMAGE, SEND ENCRYPTED COPY TO SERVER, BURN, AND KEEP THE KEY
+# image must allow a partion of at least 512k, we make it a little larger
+log "You can use Ctrl-c to skip the CD burn if you are only testing."
+backup -b -S 600k -k -s "${SERVER}" "${KEY_DIR}" 
+or_die " Unable to create disk image, backup returned [$?]"
+
+# UPDATE THE CLIENT AND SERVER ~/.ssh/authorized_keys
+log "Updating ${SERVER} with public key [${PUBLIC_KEY}]"
+cat "${KEY_DIR}/${PUBLIC_KEY}" | ssh ${user}@${SERVER} 'cat - >> ~/.ssh/authorized_keys'
+or_die " Unable to update ${SERVER} server as user \"${user}\" [$?]"
+
+local local_machine=`hostname`
+log "Updating local machine [${user}@${local_machine}] with public key [${PUBLIC_KEY}]"
+cat "${KEY_DIR}/${PUBLIC_KEY}" >> ~/.ssh/authorized_keys
+or_die " Unable to update local machine as user \"${user}\" [$?]"
+
+}
+
+_mkkey $*
+

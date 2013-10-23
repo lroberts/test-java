@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# copy this file to the trunk dir and execute
+
+install_maven_artifact lib/portal-4_14_2008.jar portal edu.ucsf.sis 4_14_2008
+install_maven_artifact lib/maven-antrun-extended-plugin-1.20.jar maven-antrun-extended-plugin org.jvnet.maven-antrun-extended-plugin 1.20
+install_maven_artifact lib/xjavadoc-1.5-snapshot050611.jar xjavadoc xjavadoc 1.5-050611
+install_maven_artifact lib/mail-1.4.jar mail javax 1.4
+install_maven_artifact lib/jdo-1.0.1.jar jdo jdo 1.0.1
+install_maven_artifact lib/jdori-1.0.1.jar jdori jdo 1.0.1
+install_maven_artifact lib/struts-menu-2.3-tld.jar struts-menu struts-menu 2.3-tld
+#install_maven_artifact lib/xdoclet-ojb-module-1.2.3.jar xdoclet-ojb-module ojb 1.2.3
+install_maven_artifact lib/properties-maven-plugin-1.0-SNAPSHOT.jar properties-maven-plugin org.codehaus.mojo 1.0-SNAPSHOT
+
+sudo cp -r webapp/docs/var-webapp /var/webapp
+
+# install and configure pgsql, something like (as root/sudo)
+# yum install postgresql postgresql-server
+# update /var/lib/pgsql/data/pg_hba.conf to use 'trust' instead of 'ident sameuser'
+# # create your pg user for your o/s username
+# su postgres -c "createuser lroberts"; exit;
+# createdb webapp

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function _search_jars(){
+# -path '*/.svn' -prune -o -type f -print0
+for file in `find ~/.m2 -name "*.jar"`
+do
+jar tf $file | grep "${0}"
+done
+}
+
+
+_search_jars $*

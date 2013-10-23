@@ -1,0 +1,50 @@
+#!/bin/bash
+
+function _cvs_sis_to_mvn(){
+
+local RELEASE="${1}"
+local RELEASE_STR=
+local RELEASE_DIR=
+local RELEASE_VERSION=
+if [ ! -z ${RELEASE} ]
+then
+echo "Checking out release: ${RELEASE}"
+RELEASE="${RELEASE}"
+RELEASE_STR="-r \"${RELEASE}\" ."
+RELEASE_DIR="${RELEASE}"
+RELEASE_VERSION="${RELEASE}"
+else
+echo "No SIS release specified, defaulting to head"
+RELEASE_DIR="HEAD"
+RELEASE_VERSION="HEAD-SNAPSHOT"
+RELEASE_STR="."
+fi
+
+export CVSROOT=:ext:lroberts@gforge.campus.net.ucsf.edu:/cvsroot/portal
+export CVS_RSH=ssh
+local CVS_CO_CMD="cvs -d ${CVSROOT} checkout ${RELEASE_STR} "
+
+mkdir "${RELEASE_DIR}"
+cd "${RELEASE_DIR}"
+
+echo "executing ${CVS_CO_CMD}"
+eval "${CVS_CO_CMD}"
+
+
+
+# deploy to maven repo
+ant staff-build
+local PORTAL_JAR=`find . -name "portal.jar"`
+
+if [ -f "${PORTAL_JAR}" ]
+then
+
+install_maven_artifact "${PORTAL_JAR}" portal edu.ucsf.saa.sis "${RELEASE_VERSION}"
+else
+echo "ERROR: unable to find portal.jar after build"
+
+fi
+
+}
+
+_cvs_sis_to_mvn $*

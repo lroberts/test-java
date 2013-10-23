@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.ucsf.tools</groupId>
+  <artifactId>executable-project</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <name>Executable Project</name>
+  <description>
+
+  </description>
+
+  <properties>
+    <tools.executable.main.class>Add main class property 'tools.executable.main.class' to your maven pom file</tools.executable.main.class>
+  </properties>
+
+  <dependencies>
+<!--
+    <dependency>
+      <groupId></groupId>
+      <artifactId></artifactId>
+      <version></version>
+    </dependency>
+-->
+
+  </dependencies>
+  
+  <build>
+    
+    <plugins>
+        
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>-Xms1024M -Xmx2048M</argLine>
+        </configuration>
+     </plugin>
+
+     <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-assembly-plugin</artifactId>
+       <!-- This version fixes the duplicate-files-being-added-to-jar bug:
+	    http://jira.codehaus.org/browse/MASSEMBLY-285
+	 -->
+       <version>2.2.2</version>
+       <dependencies>
+	 <dependency>
+	   <groupId>edu.ucsf.tools</groupId>
+	   <artifactId>executable</artifactId>
+	   <version>1.0</version>
+	 </dependency>
+       </dependencies>
+       <configuration>
+	 <!-- This is where we use our shared assembly descriptor -->
+	 <descriptorRefs>
+	   <descriptorRef>executable-assembly</descriptorRef>
+	 </descriptorRefs>
+
+	 <archive>
+	   <manifest>
+             <mainClass>${tools.executable.main.class}</mainClass>
+	   </manifest>
+	 </archive>
+
+       </configuration>
+
+        <executions>
+          <execution>
+            <id>make-assembly</id><!-- this is used for inheritance merges -->
+            <phase>package</phase><!-- append to the packaging phase. -->
+            <goals>
+              <goal>attached</goal><!-- goals == mojos -->
+            </goals>
+          </execution>
+        </executions>
+     </plugin>
+
+     </plugins>
+
+   </build>
+
+</project>

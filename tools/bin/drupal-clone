@@ -1,0 +1,659 @@
+#!/bin/bash
+
+
+# Run a command with a spinner instead of a progress bar, for
+# use with processes that take an indeterminate amount of time to complete
+#
+# usage: run [command] [message]
+function run(){
+
+local file
+# MUST RESET OPTIND
+OPTIND=1
+local FIRST_ARG
+local FIRST_ARG_IDX
+local LAST_OPTION
+local LAST_OPTION_IDX
+declare -a TRAILING_ARGS
+local TOTAL_ARG_COUNT=0
+local TRAILING_ARG_COUNT=0
+local isSudo="off"
+local isVerbose="off"
+# sometimes we want to execute a command, that may return
+# a return code > 0, but we still want it to be OK.
+local isAlwaysOK="off"
+while getopts "svK" flag
+do
+    case "$flag" in
+      s)  isSudo=on;;
+      v)  isVerbose=on;;
+      K)  isAlwaysOK=on;;
+      \?) die "Unrecognized option \?"
+    esac
+done
+
+
+# ---------------------------------------------------
+# FIND Command and Message
+# ---------------------------------------------------
+let LAST_OPTION=${OPTIND}
+let LAST_OPTION--
+
+let LAST_OPTION_IDX=LAST_OPTION
+let LAST_OPTION_IDX--
+
+
+if [ $# -gt ${LAST_OPTION_IDX} ]
+then
+   for file in "$@"
+   do
+    if [ ${TOTAL_ARG_COUNT} -gt ${LAST_OPTION_IDX} ]
+    then
+	log -t "Adding file ${file} to backup list"
+        TRAILING_ARGS[TRAILING_ARG_COUNT]="${file}"
+
+	let TRAILING_ARG_COUNT++
+    fi
+
+    let TOTAL_ARG_COUNT++
+   done
+fi 
+
+if [ ${TRAILING_ARG_COUNT} -lt 2 ]
+then
+    die "Usage: run [command] [message]"
+    return 1;
+fi
+
+
+local MESSAGE="${TRAILING_ARGS[1]}"
+
+if [ "${isSudo}" = "on" ]
+then
+    # we do a dummy sudo here that will still be active when the command 
+    # below executes
+    if [ -n "${SUDO_PASSWORD}" ]
+    then
+	if [ "${isVerbose}" = "on" ]
+	then
+	    log "Using stored password "
+	fi
+	echo "${SUDO_PASSWORD}" | sudo -S touch . > /dev/null  2>&1
+    else
+	sudo ls > /dev/null
+    fi
+fi
+
+
+if [ "${isVerbose}" = "on" ]
+then
+    log "Executing [${TRAILING_ARGS[0]}] [sudo: ${isSudo}]"
+fi
+
+#log "Executing [${TRAILING_ARGS[0]}]"
+#log -n "${MESSAGE}"
+#eval "(echo '${SUDO_PASSWORD}' | sudo -S ${TRAILING_ARGS[0]} && ok) || (fail && die \"Command failed $?\") &"; progress_spin $!;
+#else
+
+    log -n "${MESSAGE} "
+    local HIDE_OUTPUT=" >/dev/null 2>&1 "
+    #if [ "${isVerbose}" = "on" ]
+    #then
+    #   HIDE_OUTPUT=" >/dev/null 2>&1 "
+    #fi
+	
+    local COMMAND="(${TRAILING_ARGS[0]} ${HIDE_OUTPUT} && ok) || (fail && die \"Command failed $?\") &"
+    local COMMAND_OK="(${TRAILING_ARGS[0]}  ${HIDE_OUTPUT}) &"
+    local SUDO_COMMAND="(echo '${SUDO_PASSWORD}' | sudo -S ${TRAILING_ARGS[0]} ${HIDE_OUTPUT} && ok) || (fail && die \"Command failed $?\") &"
+    local SUDO_COMMAND_OK="(echo '${SUDO_PASSWORD}' | sudo -S ${TRAILING_ARGS[0]} ${HIDE_OUTPUT} ) &"
+
+    if [ "${isSudo}" = "on" ]
+    then
+	eval "${SUDO_COMMAND}"; progress_spin $!;
+    else
+	eval "${COMMAND}"; progress_spin $!;
+    fi
+
+#    if [ "${isAlwaysOK}" = "on" ]
+#    then
+#	if [ "${isSudo}" = "on" ]
+#	then
+#            eval "${SUDO_COMMAND_OK}"; progress_spin $!;   
+#	    ok
+#	else
+#            eval "${COMMAND_OK}"; progress_spin $!;   
+#	    ok
+#	fi
+#    else
+#	if [ "${isSudo}" = "on" ]
+#	then
+#	    log -n "Is SUDO"
+#	    eval "${SUDO_COMMAND}"; progress_spin $!;
+#	else
+#	    eval "${COMMAND}"; progress_spin $!;
+#	fi
+#    fi
+#fi
+
+}
+
+## This is similar to what FreeBSD does when it is booting
+### some command &
+### progress_spin $!
+# A small "asterik" like thing will spin until the process is complete
+#+ (when ps ax | grep PID no longer finds anything)
+function progress_spin()
+{
+  ## The characters to use
+  # These will be overlapped via ^H
+  ICON[0]="/"
+  ICON[1]="-"
+  ICON[2]="\\"
+  ICON[3]="|"
+
+  ## The process we wish to monitor
+  local PROCESS=$1
+
+  ## Initialize count value
+  # print out first icon
+  local icon_num=0
+#  log -n ${ICON[$icon_num]}
+
+  ## While the process exists in ps ax, do this loop
+  while ( ps ax | grep $PROCESS | grep -v "grep" 1>/dev/null )
+  do
+    ## If our count is bigger than 3 (our highest number icon)
+    # reset it to 0
+    if [ "$icon_num" -gt "3" ]; then
+	icon_num=0
+    fi
+
+    set_color 31 40
+    ## new_icon
+    echo -en "${ICON[$icon_num]}"
+    # backspace once
+    printf  "\b"
+    icon_num=`expr $icon_num + 1`
+
+    sleep 0.5
+    reset_color
+  done
+
+  return $?
+}
+
+function or_die(){
+if [ $? -ne 0 ]
+then
+  die "${1}"
+fi
+}
+
+# right justified, 5 characters
+function die(){
+  echo -n "["
+  local STYLE=0
+  local FG=31
+  local BG=40
+  local CTRL="\033[${STYLE};${FG};${BG}m"
+  echo -en "${CTRL}"
+  printf "%5s" "ERROR"
+  # reset
+  echo -en "\033[0m"
+  echo "] ${1}"
+  exit $?
+}
+
+# right justified, 5 characters
+function fail(){
+  reset_color
+  printf "%5s" "["
+  print_red "FAILED"
+  echo "]"
+}
+
+# right justified, 5 characters
+function ok(){
+  reset_color
+  printf "%5s" "["
+  print_green "OK"
+  echo "]"
+}
+
+function log_result(){
+
+if [ $? -ne 0 ]
+then
+    fail
+    return $?
+else
+    ok
+fi
+
+}
+
+# left justified, 50 characters
+function log(){
+
+# MUST MAKE i (and all counters) local
+local i=0
+# MUST RESET OPTIND
+OPTIND=1
+local FIRST_ARG
+local FIRST_ARG_IDX
+local LAST_OPTION
+local LAST_OPTION_IDX
+
+local DEFAULT_THRESHOLD_LEVEL_NAME="INFO"
+local MESSAGE_LEVEL_NAME="INFO"
+local CMD_SPACING="%-67s"
+local DO_NEWLINE=on
+
+array_put LOG_LEVELS TRACE 0
+array_put LOG_LEVELS DEBUG 1
+array_put LOG_LEVELS INFO 2
+array_put LOG_LEVELS WARN 3
+array_put LOG_LEVELS ERROR 4
+array_put LOG_LEVELS FATAL 5
+
+
+while getopts "fewditS:n" flag
+do
+    case "$flag" in
+      f)  MESSAGE_LEVEL_NAME=FATAL;;
+      e)  MESSAGE_LEVEL_NAME=ERROR;;
+      w)  MESSAGE_LEVEL_NAME="WARN";;
+      i)  MESSAGE_LEVEL_NAME="INFO";;
+      d)  MESSAGE_LEVEL_NAME=DEBUG;;
+      t)  MESSAGE_LEVEL_NAME="TRACE";;
+      n)  DO_NEWLINE=off;;
+      S)  CMD_SPACING=${OPTARG};;
+      \?) log_usage
+          return 1;;
+    esac
+done
+
+# Get the Message level
+local MESSAGE_LEVEL=`array_get LOG_LEVELS ${MESSAGE_LEVEL_NAME}`
+
+# Get the User's "LOG_LEVEL" environment level
+local USER_LEVEL=`array_get LOG_LEVELS ${LOG_LEVEL}`
+local DEFAULT_LEVEL=`array_get LOG_LEVELS ${DEFAULT_THRESHOLD_LEVEL_NAME}`
+local THRESHOLD_LEVEL
+let THRESHOLD_LEVEL=${USER_LEVEL:-${DEFAULT_LEVEL}}
+ 
+if [ "${MESSAGE_LEVEL}" -lt "${THRESHOLD_LEVEL}" ]
+then
+return
+fi
+
+let LAST_OPTION=${OPTIND}
+let LAST_OPTION--
+
+let LAST_OPTION_IDX=LAST_OPTION
+let LAST_OPTION_IDX--
+let FIRST_ARG_IDX=LAST_OPTION_IDX
+let FIRST_ARG_IDX++
+
+
+# ---------------------------------------------------
+# FIND LIST OF string ARGUMENTS
+# ---------------------------------------------------
+local count=0
+local ARG_COUNT=0
+local item
+declare -a ADDITIONAL_ARGS
+
+if [ $# -gt ${LAST_OPTION_IDX} ]
+then
+   for item in "$@"
+   do
+    #log you typed ${item} ${count}.
+    if [ $count -gt ${LAST_OPTION_IDX} ]
+    then
+	if [ $count -gt ${FIRST_ARG_IDX} ]
+	then
+	   let zeroIndexed=${ARG_COUNT}
+	   let zeroIndexed--
+           #log "Adding arg ${item} to list, count: ${ARG_COUNT}, zero: ${zeroIndexed}"
+           ADDITIONAL_ARGS[${zeroIndexed}]="${item}"
+	else
+	    #log "FIRST ARG IS ${item}"
+	    FIRST_ARG="${item}"
+	fi
+
+	let ARG_COUNT++
+    fi
+
+    let count++
+   done
+fi
+
+
+local MLC="${MESSAGE_LEVEL_NAME}"
+local CMD_ARGS="\"[${MESSAGE_LEVEL_NAME}] ${FIRST_ARG}\""
+local numArgs="${#ADDITIONAL_ARGS}"
+for ((i=0;i<$numArgs;i++));  do
+    CMD_ARGS="${CMD_ARGS}, \"${ADDITIONAL_ARGS[${i}]}\""
+done
+
+#echo -n "[ "
+#print_color "${MLC}" 31 40
+#echo -n "] "
+
+local CMD="printf ${CMD_ARGS}"
+#echo "${CMD}"
+local CMD="printf \"${CMD_SPACING}\" ${CMD_ARGS}"
+eval "${CMD}"
+if [ "${DO_NEWLINE}" = "on" ]
+then
+echo ""
+fi
+}
+
+#log "Do you really want to remove 1230 files (yes/no)?"
+#The script "ask()" allows for easy prompting, e.g.
+#if ask -y "really remove $n files"
+#then
+#  rm -f "$allfiles"
+#fi
+function ask() {
+          #
+          # ask a question with a yes/no answer;
+          # Usage: ask [-y|-n] "question"
+          # Set default: -y = yes; -n = no; otherwise no default;
+          # Returns: 0 (true) = yes; 1 (false) = no;
+          # Note: changing the default does not effect the return value;
+          #
+          ASK_DFLT=
+          # process options/args
+          for ASK_OPT do
+                case "$ASK_OPT" in
+                  -[yY]*) ASK_DFLT='y' ;;
+                  -[nN]*) ASK_DFLT='n' ;;
+                  --) shift; break ;;
+                  -*) ;;
+                  *) break
+                  esac
+                shift
+            done
+          ASK_PROMPT="$*"
+
+          # get the response
+          while : ; do
+                log -n "$ASK_PROMPT (y/n)?${ASK_DFLT:+ [$ASK_DFLT]} " >&2
+                read ASK_ANSWER ASK_JUNK
+
+                : ${ASK_ANSWER:=$ASK_DFLT}
+
+                case "$ASK_ANSWER" in
+                  [yY]*)
+                        return 0
+                        ;;
+                  [nN]*)
+                        return 1
+                        ;;
+                  *)
+                        log " " >&2
+                  esac
+            done
+
+          return
+        }
+
+
+function repl(){
+
+# MUST RESET OPTIND
+OPTIND=1
+local FIRST_ARG
+local FIRST_ARG_IDX
+local LAST_OPTION
+local LAST_OPTION_IDX
+
+declare -a REPL_ARGS
+local BE_QUIET=off
+local DELIM="@"
+local DIR=`pwd`
+local IS_SUDO="off"
+
+while getopts "qsd:D:S:" flag
+do
+    case "$flag" in
+      q)  BE_QUIET=on;;
+      d)  DIR="${OPTARG}";;
+      s)  IS_SUDO="on";;
+      D)  DELIM="${OPTARG}";;
+      S)  DELIM="${OPTARG}";;
+      \?) log
+          log "Usage:"
+          log "replace \"old text\" \"new text\" '[glob pattern]' "
+          log
+          log "For Example:"
+          log "replace \"sites/clientX\" \"/new/clientX\" '*.html'"
+          log
+    
+          return 1;;
+    esac
+done
+
+
+#Check if first parameter is a directory
+if [ ! -d ${DIR} ]
+then 
+    log -e "${DIR} is not a directory"
+    return 1
+fi
+
+let LAST_OPTION=${OPTIND}
+let LAST_OPTION--
+
+let LAST_OPTION_IDX=LAST_OPTION
+let LAST_OPTION_IDX--
+
+# ---------------------------------------------------
+# FIND REGEX
+# ---------------------------------------------------
+local count=0
+local ARG_COUNT=0
+local rarg
+if [ $# -gt ${LAST_OPTION_IDX} ]
+then
+   for rarg in "$@"
+   do
+    #log you typed ${file} ${count}.
+    if [ $count -gt ${LAST_OPTION_IDX} ]
+    then
+        REPL_ARGS[ARG_COUNT]="${rarg}"
+
+	let ARG_COUNT++
+    fi
+
+    let count++
+
+   done
+
+fi 
+
+local DO_REPLACE="on"
+if [ ${BE_QUIET} = "off" ]
+then
+log -w "You must ensure all delimiter charaters in your input strings are escaped." 
+
+if ask -y "The delimiter character is ${DELIM}. Do you wish to continue? "
+then
+DO_REPLACE="on"
+else
+DO_REPLACE="off"
+fi
+fi
+
+
+if [ ${DO_REPLACE} = "on" ]
+then
+
+    local FIND=`which find`
+    if [ ${IS_SUDO} = "on" ]
+    then
+	FIND="sudo ${FIND}"
+    fi
+    local DO_FIND="${FIND} ${DIR}/ -name '${REPL_ARGS[2]}'"
+    log -d "Find command is ${DO_FIND}"
+    local REP="${DO_FIND} | xargs perl -pi -e 's${DELIM}${REPL_ARGS[0]}${DELIM}${REPL_ARGS[1]}${DELIM}g'"
+    #log "Just testing:" ${REP}
+    eval ${REP}
+    return;
+fi
+
+}
+
+function _clone(){
+
+CLONE_SRC="`pwd`/ssmb-clone-12dec2011.tar.gz"
+CLONE_NAME=
+DATABASE_NAME=
+if [ ! -z ${1} ]
+then
+log "Clone name is ${1}. "
+CLONE_NAME="${1}.ucsf.edu"
+local DB_TEMP=
+if [ ! -z ${2} ]
+then
+DB_TEMP="${2}"
+else
+DB_TEMP="${1}"
+fi
+# strip non-alpha num
+local DB_TEMP2=`echo "${DB_TEMP}" | sed 's/[^a-zA-Z0-9]//g'`
+echo "db name is ${DB_TEMP}"
+if [ ${#DB_TEMP} -gt ${#DB_TEMP2} ]
+then
+ # some non alphanum chars we included/stripped so we need to ask for
+ # a db name
+ log -e "Your site name contains non-alphanumeric characters and so cannot be used for a database name. Please supply the database name as a second argument to this tool, eg. drupal_clone ${1} ${DB_TEMP2}"
+return
+else
+DATABASE_NAME="drupal_${DB_TEMP2}"
+fi
+
+
+log -w ""
+if ask -y "This will create a new UCSF SAA site for domain '${CLONE_NAME}' with a corresponding database '${DATABASE_NAME}'. Do you wish to continue? "
+then
+log "OK, proceeding. "
+else
+log -w "Aborting clone"
+return
+fi
+
+else
+log -e "No clone name given, aborting..."
+log "Please invoke this tool providing the cloned site name as the only argumnet, like this: drupal-clone mysite "
+log "This will create a new site for domain 'mysite.ucsf.edu' with a corresponding database 'drupal_mysite'"
+return
+fi
+
+if [ -d "./var" ]
+then
+log -w "..removing archive dir"
+rm -r ./var
+fi
+
+if [ -f "${CLONE_NAME}.sql" ]
+then
+log -w "..removing sql script"
+rm "${CLONE_NAME}.sql"
+fi
+
+if [ -d "${CLONE_NAME}" ]
+then
+#log "clone directory already exists, aborting"
+#return
+log -w "..removing clone dir"
+rm -r "${CLONE_NAME}"
+fi
+
+
+run "tar zxvf ${CLONE_SRC}" "Unpacking drupal template archive"
+
+run "mv ./var/www/html/sites/ssmb.ucsf.edu ${CLONE_NAME}" "Moving site directory"
+run "mv ssmb-database-12dec2011.sql ${CLONE_NAME}.sql" "Moving database template"
+
+run "sed -i 's/ssmb\.ucsf\.edu/${CLONE_NAME}/g' ${CLONE_NAME}.sql" "Updating sql script" 
+run "sed -i 's/drupal_ssmb/${DATABASE_NAME}/g' ${CLONE_NAME}.sql" "Updating database name" 
+
+# repl assumes that the current dir is the one you want to process
+cd "${CLONE_NAME}"
+
+run "repl -q \"ssmb\.ucsf\.edu\" \"${CLONE_NAME}\" '*.php'" "Updating php files"
+run "repl -q \"drupal_ssmb\" \"${DATABASE_NAME}\" '*.php'" "Updating database credential"
+
+run "repl -q \"ssmb\.ucsf\.edu\" \"${CLONE_NAME}\" '*.info'" "Updating Drupal info files"
+
+run "repl -q \"ssmb\.ucsf\.edu\" \"${CLONE_NAME}\" '*.js'" "Updating javascript files"
+
+cd ..
+
+tar zcvf "${CLONE_NAME}.tar.gz" "${CLONE_NAME}" "${CLONE_NAME}.sql"
+
+if ask -y "About to perform database installation. Do you wish to continue? (You will be asked to enter the password for the mysql 'root' account)"
+then
+
+local HAS_ROOT=
+local DB_PASS=
+let HAS_ROOT=0
+echo ""
+echo "Please enter the password for the mysql root account."
+while [ ${HAS_ROOT} -eq 0 ]
+do
+read -s DB_PASS
+
+mysql -u root -p"${DB_PASS}" -e "SELECT 1" > /dev/null
+if [ $? -ne 0 ]
+then
+log -e "Sorry, access denied"
+else
+log "Thanks!"
+let HAS_ROOT=1
+fi
+
+done
+
+# we can test for the existence of the new database using the mysql client's return value
+# [lroberts@larry-centos01]$ mysql -u root -p drupal_isso -e "SELECT 1"
+# Enter password: 
+# +---+
+# | 1 |
+# +---+
+#[lroberts@larry-centos01]$ echo $?
+# 0
+#[lroberts@larry-centos01]$ mysql -u root -p drupal_blah -e "SELECT 1"
+#Enter password: 
+#ERROR 1049 (42000): Unknown database 'drupal_blah'
+#[lroberts@larry-centos01 test.ucsf.edu]$ echo $?
+# 1
+
+#echo "mysql -u root --password=\"${DB_PASS}\" \"${DATABASE_NAME}\" -e \"SELECT 1\""
+
+mysql -u root --password="${DB_PASS}" "${DATABASE_NAME}" -e "SELECT 1" > /dev/null
+if [ $? -ne 0 ]
+then
+log "Database '${DATABASE_NAME}' does not currently exist, proceeding with creation"
+mysql -u root --password="${DB_PASS}" -e "create database ${DATABASE_NAME}"
+else
+log -e "Database '${DATABASE_NAME}' already exists, aborting"
+return
+fi
+
+else
+log -w "Skipping database installation"
+fi
+
+run "rm -r ./var" "Cleaning archive dir"
+
+
+}
+
+
+
+_clone $*

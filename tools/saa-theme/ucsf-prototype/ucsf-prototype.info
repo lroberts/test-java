@@ -1,0 +1,45 @@
+name = UCSF Theme with prototype
+description = Tableless, multi-column, fluid width theme (default).
+version = VERSION
+core = 6.x
+engine = phptemplate
+;base theme = garland
+
+features[] =
+; features[] = logo
+; features[] = name
+; features[] = slogan
+; features[] = mission
+; features[] = node_user_picture
+; features[] = comment_user_picture
+; features[] = search
+; features[] = favicon
+; features[] = primary_links
+
+regions[sys_msg] = System message
+regions[header] = Header
+regions[header_image] = Home hero image
+regions[home_center] = Home center column
+regions[left] = Left sidebar
+regions[right] = Right sidebar
+regions[content] = Content
+regions[footer] = Footer
+regions[closure] = Closure
+
+stylesheets[all][] = base.css
+stylesheets[all][] = layout.css
+stylesheets[all][] = superfish.css
+stylesheets[all][] = theme.css
+; stylesheets[all][] = tabs.css
+stylesheets[all][] = jquery.ui.all.css
+
+scripts[] = jquery.toggleval_2.1.min.js
+scripts[] = hoverIntent.js
+scripts[] = jquery.bgiframe.min.js
+scripts[] = superfish.js
+scripts[] = supersubs.js
+scripts[] = cufon-yui.js
+scripts[] = Helvetica_Neue_200.font.js
+scripts[] = Helvetica_Neue_400.font.js
+scripts[] = jquery-ui-1.6.custom.min.js
+scripts[] = common.js

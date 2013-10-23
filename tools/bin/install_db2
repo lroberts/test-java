@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# this worked for centos 5.2, your mileage may vary
+
+tar zxvf db2_v95_linuxia32_server.tar.gz
+cd server
+
+# must be root
+su
+
+# check pre requisites
+./db2prereqcheck
+
+# needs this rpm
+rpm -Uvh compat-libstdc++-33-3.2.3-61.i386.rpm
+updatedb
+
+# do the install, i chose the EXP package (express)
+./db2_install
+
+# add the users an groups
+/usr/sbin/useradd db2inst1
+/usr/sbin/useradd db2as
+/usr/sbin/groupadd db2inst1
+/usr/sbin/groupadd db2as
+mkdir /home/db2inst1
+mkdir /home/db2as
+chown db2inst1:db2inst1 -R /home/db2inst1
+chown db2as:db2as -R /home/db2as
+
+# create the instance
+cd /opt/ibm/db2/V9.5/instance/
+./db2icrt -u db2instl db2instl
+./dascrt -u db2as
+
+# become the instance user (you must use the '-' or your environment will
+# not be set correctly)
+su - db2inst1
+
+# add these lines to the instance user's .profile
+#./sqllib/db2profile
+#export DB2INSTANCE=db2inst1
+#export DB2PATH=~/sqllib
+#export PATH=$PATH:$DB2PATH/bin
+emacs .profile 
+
+# create the sample db
+db2sampl 
+
+# start the db
+./sqllib/adm/db2start
+
+# look at the tables
+db2look -d SAMPLE
+
+# list sequences
+select * from syscat.sequences
+
+# misc db2 trouble shhoting
+1) 57016 - "the table cannot be accessed because it is inactive"
+   - after you've made any change to the table (via alter ..) it becomes 'inactive'
+   - you need to 'update statistics' for that table:
+     REORGCHK UPDATE STATISTICS on TABLE db2inst1.person
+
+     - which gave error: -668
+     REORGCHK UPDATE STATISTICS on TABLE ALL (same result)
+
+   - more googling informed me the table might be in a 'check pending' state, and
+     that the command:
+
+      select tabname,status,const_checked from syscat.tables where status='C'
+
+     would tell me if this was the case, but it said:
+TABNAME                                                                                                                          STATUS CONST_CHECKED                   
+-------------------------------------------------------------------------------------------------------------------------------- ------ --------------------------------
+
+  0 record(s) selected.
+
+   - doing this:  ? sql0668  (ie. replacing the '-' with 'sql0'
+     gives you the equivalent help (instead of ? 57016, which doesn't work for ? -668)
+
+     on this help page it says you can see if a LOAD operation has finished
+     by asking:
+         LOAD QUERY TABLE person
+
+     which gave:
+         Tablestate:
+            Reorg Pending
+ 
+     executing:  REORG TABLE person
+     fixed the problem
+
+2) 8 character  database names
+
+3) the table pagesize/bufferpools stuff apparently to save an extra 16k
+
+4) crappy commandline tools that don't use the readline library or have any command history
+   and (probably only by default) are unable to handle both delete and backspace
+
+5) no boolean or bit datatype

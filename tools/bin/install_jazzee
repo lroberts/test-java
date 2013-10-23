@@ -1,0 +1,64 @@
+echo "THIS SCRIPT IS NOT FINISHED YET, EXITING"
+
+exit;
+
+# create a key pair
+ssh-keygen -t dsa
+chmod 0600 ~/.ssh
+
+# upload the public key [eg. .ssh/id_dsa.pub] to github
+
+# you must to this on linux so that the git client can find your key
+exec ssh-agent bash
+ssh-add .ssh/id_dsa
+
+# i did this, but i don't think it was necessary
+ssh-add .ssh/id_dsa.pub 
+chmod 0700 .ssh
+
+# configure the github user account for the git client
+git config --global user.name "lroberts"
+git config --global user.email "lawrence.roberts@ucsf.edu"
+
+# test the ssh connection
+ssh -vT git@github.com
+# this will fail: ssh -vT lroberts@github.com
+
+cd /var/www
+# ok, now we're ready to clone
+mkdir jazzee
+# *must* be git@github NOT lroberts@github
+git clone git@github.com:graddiv/jazzee.git jazzee
+
+# ok, now we can start configurng things
+cd jazzee
+# download composer, the build/dependency tool
+curl -s http://getcomposer.org/installer | php
+
+# run composer
+php composer.phar install
+
+# i got an error for the symfony console component, but removing the
+# jazzee/vendor/symfony directory and then running the install command again 
+# worked.
+
+# configuring jazzee
+./setup install
+
+# create mysql db and user
+cp jazzee-ini.php /var/www/webapps/etc/var.www.jazzee.saa-appserver3.jazzee.ini.php
+# /var/www/webapps/etc/jazzee.ini.php is supposed to work but didn't for me
+# mv/cp jazzee/webroot into somewhere in /var/www/html like /var/www/html/ucsfjazzee
+# edit the .htacess and index.php to pointback to your jazzee install (outside the webroot)
+# edit /etc/httpd/conf.d/jazzee.conf to add:
+<Directory /var/www/html/ucsfjazzee>
+AllowOverride FileInfo
+</Directory>
+
+# repopulate the database
+get sql off gradtest.ucsf.edu and add to test server
+   - do this to have a 'clean' installation
+For creating an app with no applicants, but everything else in place you can just do a
+DELETE from applicants;
+Or to get rid of applicants and program information
+DELETE FROM applications;

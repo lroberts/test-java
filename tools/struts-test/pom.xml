@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.ucsf.tools</groupId>
+  <artifactId>struts-test</artifactId>
+  <packaging>jar</packaging>
+
+  <name>Struts TestCase</name>
+  <version>2.1.4</version>
+
+
+  <developers>
+    <developer>
+      <name>Larry Roberts</name>
+      <id>larry</id>
+      <email>lawrence.roberts@ucsf.edu</email>
+      <organization>UCSF</organization>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:svn:http://larry.ucsf.edu/svn/trunk/lib/strutstestcase</connection>
+    <developerConnection>scm:svn:http://larry.ucsf.edu/svn/trunk/lib/strutstestcase</developerConnection>
+    <url>http://larry.ucsf.edu/svn/trunk/lib/strutstestcase</url>
+  </scm>
+<!--
+  <issueManagement>
+    <system>scarab</system>
+    <url>http://dev.cdp.ucsf.edu/scarab/issues/curmodule/100/tqk/0/template/IssueTypeList.vm</url>
+  </issueManagement>
+  -->
+
+  <repositories>
+
+    <repository>
+      <id>webapp-repo</id>
+      <url>https://larry.ucsf.edu/mvn</url>
+
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>ignore</checksumPolicy>
+      </snapshots>
+    </repository>
+
+
+  <!-- For hibernate support -->
+  <repository>
+   <id>jboss</id>
+   <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+   </repository>
+
+    <repository>
+      <id>maven2-repository.dev.java.net</id>
+      <name>Java.net Repository for Maven</name>
+      <url>http://download.java.net/maven/2/</url>
+      <layout>default</layout>
+    </repository>
+
+    <repository>
+      <id>maven2-repository</id>
+      <name>Main Maven Repo</name>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+
+  </repositories>
+
+   <pluginRepositories>
+    <pluginRepository>
+      <id>webapp-plugin-repo</id>
+      <url>https://larry.ucsf.edu/mvn</url>
+
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>ignore</checksumPolicy>
+      </snapshots>
+    </pluginRepository>
+
+     <pluginRepository>
+      <id>maven2-repository.dev.java.net</id>
+      <name>Java.net Repository for Maven</name>
+      <url>http://download.java.net/maven/2/</url>
+      <layout>default</layout>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+   </pluginRepository>
+  </pluginRepositories>
+
+  <dependencies>
+    
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.14</version>
+        <type>jar</type>
+    </dependency>
+    
+<!--
+    <dependency>
+      <groupId>com.itseasy.rtf</groupId>
+      <artifactId>srw</artifactId>
+      <version>0.6</version>
+      <type>jar</type>
+    </dependency>
+    -->
+    <dependency>
+       <groupId>struts</groupId>
+        <artifactId>struts</artifactId>
+        <version>1.2.9</version> 
+<!--
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts-core</artifactId>
+        <version>1.3.10</version>
+-->
+        <type>jar</type>
+
+        <exclusions>
+	  <!-- replace 1.7.0 with 1.8.0 b/c it actually gives informative error messages 
+          <exclusion>
+	    <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+          </exclusion>
+-->
+        </exclusions>
+    </dependency>
+<!--
+    <dependency>
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts-tiles</artifactId>
+        <version>1.3.10</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts-extras</artifactId>
+        <version>1.3.10</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts-taglib</artifactId>
+        <version>1.3.10</version>
+    </dependency>
+-->
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+    
+    <!-- http://jakarta.apache.org/taglibs/doc/standard-1.0-doc -->
+    <dependency>
+        <groupId>jstl</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.1.2</version>
+        <type>jar</type>
+    </dependency>
+
+    <!-- http://jakarta.apache.org/taglibs/ -->
+    <dependency>
+        <groupId>taglibs</groupId>
+        <artifactId>standard</artifactId>
+        <version>1.1.2</version>
+        <type>jar</type>
+    </dependency>
+    
+    <!-- 
+      @license: SUN 
+      @change from 2.2 to 2.4
+      @url http://java.sun.com/products/servlet/
+      -->   
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+<!--      <version>2.4</version> -->
+      <version>3.0.1</version> 
+<!--      <scope>provided</scope> -->
+    </dependency> 
+
+
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>7.0.21</version> 
+<!--      <scope>provided</scope> -->
+    </dependency> 
+
+    <!-- 
+      @license SUN 
+      @url http://java.sun.com/products/jsp/
+      -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <!-- =================================================================== -->
+    <!-- T E S T   L I B S                                                   -->
+    <!-- =================================================================== -->
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+    </dependency>
+
+    
+  </dependencies>
+
+  <build>
+
+    <!-- 
+         PLUGIN MANAGEMENT SECTION ALLOWS US TO SPECIFY DEFAULT 
+         CONFIGURATION DETAILS FOR WEBAPPS.
+	 ADDING A PLUGIN HERE DOES NOT MEAN THAT IT WILL BE EXECUTED.
+	 TO EXECUTE IT, JUST ADD IT TO THE BUILD PLUGIN LIST.
+	 -->
+    <pluginManagement>
+
+    <plugins>
+
+     <plugin>
+     <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+
+          <includes>
+            <include>**/Test*.java</include>
+            <include>**/*Test.java</include>
+            <include>**/*TestCase.java</include>
+            <include>**/*Tests.java</include>
+          </includes>
+
+          <systemProperties>
+            <property>
+              <name>TEST_TEMP</name>
+              <value>${basedir}/target/temp/</value>
+            </property>
+
+            <!--                                                                                       
+                This is actually the default, but we specify it here just                              
+                to make it explicit                                                                    
+                -->
+            <property>
+              <name>log4j.configuration</name>
+              <value>log4j.properties</value>
+            </property>
+
+          </systemProperties>
+
+
+          <!--                                                                                         
+              YOU CAN CHANGE WHERE TEST RESULTS ARE LOCATED                                            
+              <outputDirectory>${basedir}/target/newsite</outputDirectory                              
+                                                           -->
+          <outputName>Test Results</outputName>
+
+          <!--                                                                                         
+              forkMode: [never|once|always]                                                            
+              Runs tests in a new JVM process (or not).                        - 'once'   starts a new JVM process once for all your tests                             
+               - 'always' starts a new JVM process for each of your tests.                             
+                                                                                                       
+               Can fork the # ofw process is limited (eg. a hosted server)                             
+            -->
+          <forkMode>once</forkMode>
+
+          <!--                                                                                         
+             THESE OPTIONS ARE ONLY ENABLED IF FORKING (ie.'once' or always')                          
+             http://docs.codehaus.org/display/MAVENUSER/Classloading+and+Forking+under+Maven+Surefire  
+             -->
+          <useSystemClassLoader>false</useSystemClassLoader>
+          <childDelegation>true</childDelegation>
+
+          <!--                                                                                         
+              You can set any arbitrary options like -enableassertions or              
+              any other JVM options.                                                                   
+              -->
+          <argLine>-enableassertions</argLine>
+
+          <!--                                                                                         
+              Sends any output to a text file in the surefire reports dir,                             
+              we enable because it makes the main output much clearer. We use                          
+              a profile 'debug', enabled with -Debug on the command line, to                           
+              disable it. 
+	      -->
+             <redirectTestOutputToFile>true</redirectTestOutputToFile>
+
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+    </pluginManagement>
+
+
+
+    <plugins>
+
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<!-- NEW: 20sept2011 added version -->
+	<version>2.3.2</version>
+	<configuration>
+	  <source>1.6</source>
+	  <target>1.6</target>
+	</configuration>
+      </plugin>
+
+    </plugins>
+
+<!--
+    <filters>
+        <filter>build/testdatabase.properties</filter>
+    </filters>
+
+    <testResources>
+        <testResource>
+            <directory>src/test/resources</directory>
+            <filtering>true</filtering>
+	    <excludes>
+	      <exclude> **/*.bmp </exclude>
+	      <exclude> **/*.jpg </exclude>
+	      <exclude> **/*.jpeg </exclude>
+	      <exclude> **/*.gif </exclude>
+
+	    </excludes>
+        </testResource>
+    </testResources>
+-->
+  </build>
+
+</project>

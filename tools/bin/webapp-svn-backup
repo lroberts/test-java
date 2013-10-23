@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd /opt/tasks;
+TODAY=`date +"%m-%d-%y"`
+SVNBK="webapp-$TODAY"
+
+
+rm -rf svn-bk-temp
+mkdir svn-bk-temp
+cd svn-bk-temp
+svn export file:///home/CAMPUS/lroberts/Development/codebase/
+cd ..
+mv svn-bk-temp "$SVNBK"
+tar zcvf "${SVNBK}.tar.gz" "${SVNBK}"
+
+mkdir -p webapp-nightly-backups
+
+# ssh-keygen dsa
+# cat ~/.ssh/id_dsa.pub | ssh -l remoteuser remoteserver.com 'cat >> ~/.ssh/authorized_keys'
+su -c "scp -i /home/CAMPUS/lroberts/.ssh/id_dsa ${SVNBK}.tar.gz saa-09.campus.net.ucsf.edu:/home/CAMPUS/lroberts/" lroberts
+
+mv "${SVNBK}.tar.gz" webapp-nightly-backups/

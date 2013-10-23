@@ -1,0 +1,20 @@
+div.block_edit_link {
+  background-color: #e3efff;
+  border: 1px dashed grey;
+  font-size: 11px;
+  font-weight: bold;
+  width: 25px;
+  padding: 2px 3px 1px 5px;
+  position: absolute;
+  z-index: 40;
+  display: none;
+}
+div.block_edit_link a {
+  text-decoration: none;
+  color: black;
+  font-size: 11px;
+  font-weight: bold;
+}
+div.block_edit_link a:hover {
+  text-decoration: underline;
+}

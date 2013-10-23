@@ -1,0 +1,115 @@
+/* Insideguide only */
+div#header-menu ul.header-menu li a:hover,
+#ui-columns a:hover { color: #CC6600; }
+
+h1,h2,h3,h4,h5 { color: #605D96; }
+
+h1 a { color: #605D96 !important; }
+h2 a { color: #605D96 !important; }
+h3 a { color: #605D96 !important; }
+h4 a { color: #605D96 !important; }
+h5 a { color: #605D96 !important; }
+
+h2.block-title        { color: #3F454F; }
+.front h2.block-title { color: #1C3664; }
+
+#ui-content-left .firstBlock {
+margin-top: 0;
+}
+#ui-content-left .firstBlock .content {
+ font-size: 13px;
+ padding-left: 20px;
+ padding-bottom: 20px;
+}
+
+/*
+div#ui {
+padding: 0;
+}
+*/
+
+div#ui-header, div#ui-menu{
+/*padding: 0px 30px;*/
+/* margin-left: 30px; */
+}
+ /*
+div#ui-menubottom {
+margin-left: 0px;
+}
+*/
+
+/* Main navigation */
+div#ui-menu { padding-left: 160px; }
+/* moved to configurable colors 
+div#ui-menubottom { background-color: #605D96; }
+div#ui-menubottom div{ background-color: #605D96; }
+
+.sf-menu li li    { background: #605D96; }
+.sf-menu li li li { background: #605D96; }
+
+.sf-menu li li:hover,
+.sf-menu li li.sfHover,
+.sf-menu li li a:focus,
+.sf-menu li li a:hover,
+.sf-menu li li a:active { 
+background: #7373A9 !important;
+}
+*/
+/*
+.sf-menu li, .sf-menu li li {
+white-space: nowrap;
+width: 100%;
+}
+*/
+
+.sf-menu li.current a.active    { background: #3F454F; color: #F2F2F2; }
+.sf-menu li li.current a.active { background: inherit; color: inherit; }
+
+
+/* Homepage slideshow block */
+div#ui-slides { }
+div#ui-slides div#ui-slides-content { background-image: url(img/home.png); }
+div#ui-slides div#ui-slides-content * { color: #D6E0CD !important; }
+div#ui-slides div#ui-slides-content .block-wrapper { }
+
+
+#home-intro { border-bottom: 1px solid #DCDCDC; font-size: 22px; line-height: 30px; margin-bottom: 1em; padding-bottom: 100px; }
+#home-address {  }
+
+/*
+div#ui-content-left  div.block-wrapper { color: #7B8291; }
+div#ui-content-right div.block-wrapper { color: #7B8291; }
+*/
+div#ui-content-left  div.block-wrapper, div#ui-content-left  div.block-wrapper a{ color: #7B8291; }
+div#ui-content-right div.block-wrapper, div#ui-content-right div.block-wrapper a { color: #7B8291; }
+
+
+#block-views-ucsf_events_home-block_2 h2.block-title {background: transparent url(img/icon_cal.png) no-repeat bottom left;color:#605D96;padding: 15px 0 0 26px;}
+
+
+a.more, span.more {color:#CC6600 !important; text-decoration: none !important;}
+a.more:hover{text-decoration:underline !important;}
+
+/*Accordion */
+.views-accordion-item .accordion-content { background-color: #EBC299; }
+.accordion-item-even .accordion-header,
+.views-accordion-item .accordion-header,
+h3.accordion-header { background-color: #F8F0CE; }
+.views-accordion-item .accordion-header-active,
+h3.accordion-header-active { background-color: #CC6600; color: #FFF; border-bottom-color: #CC6600; }
+
+
+.not-front #ui-content-main .ui-content h2 { color:#000000;margin-bottom:0.15em;margin-top:1em;}
+.not-front #ui-content-main .ui-content h2 a {text-decoration:none}
+.not-front #ui-content-main .ui-content h2 a:hover {text-decoration:underline}
+
+
+@media handheld {
+    * {
+      display: none !important;
+    }
+
+  #ui-menu {
+   display: block !important;
+  }
+}
