@@ -8,7 +8,7 @@ public class StrutsConfigTest
 	throws Exception
     {
 	System.out.println("Running a test!");
-	//	throw new RuntimeException("Not implemeted yet");
+	throw new RuntimeException("Not implemeted yet");
     }
 
 }
