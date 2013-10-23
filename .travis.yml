@@ -2,4 +2,6 @@ language: java
 jdk:
   - oraclejdk7
   - openjdk7
-script: "cd tools/struts-config/;mvn clean test"
+script: 
+  - "cd tools/struts-config/;mvn clean test"
+  - "cd ../../tools/struts-test/;mvn clean test"
